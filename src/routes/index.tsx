@@ -98,7 +98,7 @@ function Index() {
           <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
             Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
           </p>
-          <div className="mt-8 [&>a]:w-full [&>a]:justify-center [&>a]:text-base sm:[&>a]:w-auto sm:[&>a]:text-lg"><CTA /></div>
+          <div className="mt-8 [&>a]:!px-5 [&>a]:!py-3 [&>a]:!text-sm sm:[&>a]:!px-8 sm:[&>a]:!py-4 sm:[&>a]:!text-lg [&>a>svg]:h-4 [&>a>svg]:w-4"><CTA /></div>
         </div>
       </section>
 
