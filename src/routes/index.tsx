@@ -48,7 +48,7 @@ function Logo({ compact }: { compact?: boolean }) {
     <img
       src={logoAsset}
       alt="Joseph Aziz Real Estate"
-      className={`${compact ? "h-10" : "mx-auto h-10 sm:h-12"} w-auto`}
+      className={`${compact ? "h-10" : "mx-auto h-6 sm:h-7"} w-auto`}
     />
   );
 }
@@ -71,14 +71,21 @@ function Index() {
         <img src={hero} alt="Luxury Bergen County home at dusk" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-left" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_55%,transparent),var(--background)_85%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
-        <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-10 text-center fade-up">
+        <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-6 text-center fade-up">
           <Logo />
-          <div className="mt-8 inline-block rounded-full border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider sm:text-sm">
+          <div className="mt-4 inline-block rounded-xl border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider sm:text-sm">
             For Bergen County homeowners considering an addition, <span className="text-primary">renovation, or rebuild</span>
           </div>
-          <h1 className="mx-auto mt-6 max-w-4xl text-4xl sm:text-5xl lg:text-[64px]">
+          <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
             Before You Spend{" "}
-            <span className="rounded-md px-2 text-primary-foreground" style={{ background: "var(--gradient-gold)" }}>$250,000</span>{" "}
+            <span className="relative inline-block whitespace-nowrap px-[0.22em] align-baseline text-[0.86em] leading-none">
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-[0.08em] bottom-[0.06em] rounded-[0.14em]"
+                style={{ background: "var(--gradient-gold)" }}
+              />
+              <span className="relative text-primary-foreground">$250,000</span>
+            </span>{" "}
             on an Addition, Find Out What It Would Take to Move Into{" "}
             <em className="gold-text">the Home You Actually Want.</em>
           </h1>
