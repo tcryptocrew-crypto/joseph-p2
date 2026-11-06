@@ -182,7 +182,7 @@ function Index() {
         <Accordion type="single" collapsible className="mx-auto mt-10 max-w-4xl space-y-3">
           {faqs.map(([q, a], i) => (
             <AccordionItem key={i} value={`f${i}`} className="panel rounded-lg border px-6 transition hover:border-primary/70">
-              <AccordionTrigger className="py-5 text-left text-lg font-semibold hover:no-underline">{q}</AccordionTrigger>
+              <AccordionTrigger className="py-5 text-left font-sans text-lg font-semibold hover:no-underline">{q}</AccordionTrigger>
               <AccordionContent className="pb-5 text-lg text-muted-foreground">{a}</AccordionContent>
             </AccordionItem>
           ))}
@@ -193,7 +193,7 @@ function Index() {
       <section id="evaluation" className="relative scroll-mt-4">
         <img src={formHouse} alt="Stone home at night" loading="lazy" width={1024} height={1024} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover lg:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-background/90 to-background lg:block" style={{ backgroundImage: "linear-gradient(90deg, transparent 0%, var(--background) 38%)" }} />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-5 py-20 lg:grid-cols-2 lg:pl-[22%] xl:pl-[18%]">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[2fr_3fr] lg:pl-[20%]">
           <div>
             <h2 className="text-4xl sm:text-[44px]">Before You Commit to Construction, Know What Your Other Option Looks Like.</h2>
             <p className="mt-5 text-lg text-foreground/90">Start with a free home evaluation. Tell us what you own and what you want to change, and Joseph’s team will contact you to arrange a conversation.</p>
