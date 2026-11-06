@@ -7,6 +7,7 @@ import hero from "@/assets/hero-mansion.jpg";
 import vsl from "@/assets/vsl-interior.jpg";
 import logoAsset from "@/assets/joseph-aziz-logo-light.png.asset.json";
 import josephAsset from "@/assets/joseph-aziz-keys.png.asset.json";
+import stayHome from "@/assets/stay-or-move-home.jpg";
 import formHouse from "@/assets/form-house.jpg";
 
 const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
@@ -139,37 +140,52 @@ function Index() {
       </section>
 
       {/* WRONG HOUSE */}
-      <section className="bg-section px-5 py-20 text-center">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="text-4xl sm:text-[46px]">A Bigger Version of Your House May Still Be the Wrong House.</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-            Another bedroom could solve the space problem. But what about the layout, the location, or the things you would still want to change?
-          </p>
-          <p className="mt-8 font-serif text-2xl italic text-primary">Before committing to construction, ask yourself:</p>
-          <div className="gold-frame mx-auto mt-5 flex max-w-3xl items-center justify-center gap-4 rounded-lg bg-background/40 px-6 py-5">
-            <Home className="hidden h-8 w-8 shrink-0 text-primary sm:block" />
-            <p className="font-serif text-2xl italic text-accent sm:text-[28px]">When the work is finished, will this be the home I want to stay in?</p>
+      <section className="bg-section px-5 py-20 sm:py-28">
+        <div className="mx-auto max-w-5xl">
+          <div className="relative">
+            <div className="absolute -inset-x-10 -bottom-10 top-1/2 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--primary)_18%,transparent),transparent_70%)] blur-2xl" />
+            <img src={stayHome} alt="Elegant stone home with warm interior lights at dusk" loading="lazy" width={1600} height={912} className="relative aspect-[16/10] w-full rounded-2xl object-cover ring-1 ring-primary/30 sm:aspect-[21/9]" />
           </div>
-          <p className="mx-auto mt-8 max-w-2xl text-lg">If you love your location and an addition gives you what you need, staying deserves a serious look.</p>
-          <p className="mx-auto mt-2 max-w-2xl text-lg text-muted-foreground">But before you commit, you should also know what your current home could help you buy.</p>
-          <p className="mt-6 font-serif text-2xl italic text-primary">Compare both paths before you start paying for one.</p>
+          <div className="mx-auto mt-12 max-w-3xl text-center">
+            <h2 className="text-[34px] leading-[1.1] sm:text-[52px]">
+              A Bigger Version of Your House May Still Be the <em className="gold-text">Wrong House.</em>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              Another bedroom could solve the space problem. But what about the layout, the location, or the things you would still want to change?
+            </p>
+            <p className="mt-14 font-serif text-xl italic text-primary sm:text-2xl">Before committing to construction, ask yourself:</p>
+            <div className="mx-auto mt-6 max-w-2xl rounded-2xl border border-primary/50 bg-background/70 px-6 py-8 shadow-[0_0_50px_-15px_var(--primary)] sm:px-12 sm:py-10">
+              <p className="font-serif text-[26px] leading-snug sm:text-[34px]">
+                When the work is finished, will this be <em className="text-primary">the home I want to stay in?</em>
+              </p>
+            </div>
+            <div className="mx-auto mt-14 max-w-xl space-y-4 text-lg leading-relaxed">
+              <p>If you love your location and an addition gives you what you need, staying deserves a serious look.</p>
+              <p className="text-muted-foreground">But before you commit, you should also know what your current home could help you buy.</p>
+            </div>
+            <div className="gold-divider mx-auto mt-10 w-16" />
+            <p className="mt-6 font-serif text-2xl italic text-primary sm:text-[28px]">Compare both paths before you start paying for one.</p>
+          </div>
         </div>
       </section>
 
       {/* AGENT */}
-      <section className="border-y border-border/50 bg-background">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[2fr_3fr]">
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--primary)_25%,transparent),transparent_70%)]" />
-            <img src={josephAsset.url} alt="Joseph Aziz handing house keys to new homeowners" loading="lazy" width={315} height={350} className="relative rounded-lg border border-border object-cover" />
-          </div>
-          <div className="md:border-l md:border-primary/60 md:pl-10">
-            <h2 className="text-3xl sm:text-[42px]">Work With an Agent Who Has Made Construction Decisions With His Own Money.</h2>
-            <div className="mt-6 max-w-2xl space-y-4 text-lg text-foreground/90">
-              <p>I’m Joseph Aziz. I’ve built my own custom home, helped homeowners sell and move into new construction, and worked directly with builders to negotiate purchase prices, finishes, and extras.</p>
+      <section className="bg-background px-5 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mx-auto max-w-3xl text-center text-[32px] leading-[1.15] sm:text-[48px]">
+            Work With an Agent Who Has Made Construction Decisions With <em className="gold-text">His Own Money.</em>
+          </h2>
+          <div className="mt-14 grid items-center gap-12 md:grid-cols-[5fr_7fr] md:gap-16">
+            <div className="relative mx-auto w-full max-w-sm">
+              <div className="absolute -inset-8 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--primary)_20%,transparent),transparent_70%)]" />
+              <div className="absolute -bottom-3 -right-3 h-full w-full rounded-2xl border border-primary/40" />
+              <img src={josephAsset.url} alt="Joseph Aziz handing house keys to new homeowners" loading="lazy" width={315} height={350} className="relative aspect-[9/10] w-full rounded-2xl object-cover" />
+            </div>
+            <div className="space-y-6 text-center text-[17px] leading-[1.75] text-foreground/90 sm:text-lg md:border-l md:border-primary/40 md:pl-12 md:text-left">
+              <p>I’m Joseph Aziz. I’ve built <span className="text-primary">my own custom home</span>, helped homeowners sell and move into new construction, and worked directly with builders to negotiate purchase prices, finishes, and extras.</p>
               <p>That experience matters when you’re deciding whether to put more money into the house you own or buy something else.</p>
               <p className="text-muted-foreground">We need to consider more than an attractive floor plan or a listing price. We need to look at what the work would accomplish, what the finished property could be worth, and what else you could buy.</p>
-              <p>If moving is the better fit, I can also help you negotiate the next purchase and coordinate it with the sale of your current home.</p>
+              <p>If moving is the better fit, I can also help you <span className="text-primary">negotiate the next purchase</span> and coordinate it with the sale of your current home.</p>
             </div>
           </div>
         </div>
