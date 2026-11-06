@@ -5,7 +5,8 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import hero from "@/assets/hero-mansion.jpg";
 import vsl from "@/assets/vsl-interior.jpg";
-import joseph from "@/assets/joseph.jpg";
+import logoAsset from "@/assets/joseph-aziz-logo.png.asset.json";
+import josephAsset from "@/assets/joseph-aziz-keys.png.asset.json";
 import formHouse from "@/assets/form-house.jpg";
 
 const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
@@ -43,16 +44,11 @@ function CTA({ small }: { small?: boolean }) {
 
 function Logo({ compact }: { compact?: boolean }) {
   return (
-    <div className={`flex ${compact ? "items-center gap-3 text-left" : "flex-col items-center text-center"}`}>
-      <svg viewBox="0 0 64 36" className={compact ? "h-8 w-14" : "h-10 w-16"} fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: "var(--primary)" }}>
-        <path d="M2 34 32 4l30 30" />
-        <rect x="27" y="18" width="10" height="10" fill="currentColor" stroke="none" />
-      </svg>
-      <div>
-        <div className={`font-sans tracking-[0.12em] ${compact ? "text-lg font-semibold" : "mt-2 text-2xl uppercase"}`}>Joseph Aziz Real Estate</div>
-        <div className={`text-primary ${compact ? "text-sm" : "mt-1 text-[11px] uppercase tracking-[0.3em]"}`}>Prestige Property Group Montclair</div>
-      </div>
-    </div>
+    <img
+      src={logoAsset.url}
+      alt="Joseph Aziz Real Estate"
+      className={`${compact ? "h-10" : "mx-auto h-10 sm:h-12"} w-auto invert mix-blend-screen`}
+    />
   );
 }
 
@@ -165,7 +161,7 @@ function Index() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[2fr_3fr]">
           <div className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--primary)_25%,transparent),transparent_70%)]" />
-            <img src={joseph} alt="Joseph Aziz, real estate agent" loading="lazy" width={896} height={1024} className="relative rounded-lg border border-border object-cover" />
+            <img src={josephAsset.url} alt="Joseph Aziz handing house keys to new homeowners" loading="lazy" width={315} height={350} className="relative rounded-lg border border-border object-cover" />
           </div>
           <div className="md:border-l md:border-primary/60 md:pl-10">
             <h2 className="text-3xl sm:text-[42px]">Work With an Agent Who Has Made Construction Decisions With His Own Money.</h2>
