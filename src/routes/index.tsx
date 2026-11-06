@@ -85,12 +85,7 @@ function Index() {
             on an Addition, Find Out What It Would Take to Move Into{" "}
             <em className="gold-text">the Home You Actually Want.</em>
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
-            Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
-          </p>
-          <div className="mt-8"><CTA /></div>
-
-          <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-10 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
+          <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
             <img src={vsl} alt="Luxury kitchen interior" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             <span className="absolute inset-0 bg-background/35" />
             <span className="absolute inset-0 flex flex-col items-center justify-center gap-4">
@@ -100,6 +95,10 @@ function Index() {
               <span className="text-sm font-semibold uppercase tracking-[0.25em]">Watch the video</span>
             </span>
           </button>
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
+            Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
+          </p>
+          <div className="mt-8"><CTA /></div>
         </div>
       </section>
 
