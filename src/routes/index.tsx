@@ -5,7 +5,7 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import hero from "@/assets/hero-mansion.jpg";
 import vsl from "@/assets/vsl-interior.jpg";
-import logoAsset from "@/assets/joseph-aziz-logo.png.asset.json";
+import logoAsset from "@/assets/joseph-aziz-logo-light.png.asset.json";
 import josephAsset from "@/assets/joseph-aziz-keys.png.asset.json";
 import formHouse from "@/assets/form-house.jpg";
 
@@ -47,7 +47,7 @@ function Logo({ compact }: { compact?: boolean }) {
     <img
       src={logoAsset.url}
       alt="Joseph Aziz Real Estate"
-      className={`${compact ? "h-10" : "mx-auto h-10 sm:h-12"} w-auto invert mix-blend-screen`}
+      className={`${compact ? "h-10" : "mx-auto h-10 sm:h-12"} w-auto`}
     />
   );
 }
