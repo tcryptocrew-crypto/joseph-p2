@@ -98,36 +98,41 @@ function Index() {
           <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
             Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
           </p>
-          <div className="mt-8"><CTA /></div>
+          <div className="mt-8 [&>a]:w-full [&>a]:justify-center [&>a]:text-base sm:[&>a]:w-auto sm:[&>a]:text-lg"><CTA /></div>
         </div>
       </section>
 
       {/* TRUST */}
       <section className="px-5 pb-14">
-        <div className="mx-auto grid max-w-6xl gap-8 border-y border-border/60 py-8 sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border/60">
-          <p className="border-l-2 border-primary pl-4 text-base font-semibold uppercase leading-snug tracking-wide">
+        <p className="mx-auto mb-6 max-w-md text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary lg:hidden">
+          Free evaluation · No obligation to sell
+        </p>
+        <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 sm:gap-4 lg:grid-cols-4 lg:gap-8 lg:border-y lg:border-border/60 lg:py-8 lg:divide-x lg:divide-border/60">
+          <p className="hidden border-l-2 border-primary pl-4 text-base font-semibold uppercase leading-snug tracking-wide lg:block">
             Start with a free home evaluation. You do not have to decide to sell.
           </p>
           {[
-            [Trophy, "Ranked #28", "in New Jersey"],
-            [Layers, "$400M+", "in Total Sales"],
-            [Home, "Built His Own", "Custom Home"],
+            [Trophy, "#28", "in New Jersey"],
+            [Layers, "$400M+", "Total Sales"],
+            [Home, "Built", "His Own Home"],
           ].map(([Icon, a, b]) => {
             const I = Icon as typeof Trophy;
             return (
-              <div key={a as string} className="flex items-center justify-center gap-4">
-                <I className="h-10 w-10 text-primary" strokeWidth={1.4} />
-                <div className="text-xl font-semibold leading-tight">{a as string}<br />{b as string}</div>
+              <div key={a as string} className="gold-frame flex flex-col items-center gap-1.5 rounded-xl bg-secondary/60 px-2 py-4 text-center lg:flex-row lg:justify-center lg:gap-4 lg:rounded-none lg:bg-transparent lg:p-0 lg:text-left lg:[border:none] lg:shadow-none">
+                <I className="h-6 w-6 text-primary lg:h-10 lg:w-10" strokeWidth={1.4} />
+                <div>
+                  <div className="font-serif text-xl font-semibold leading-none text-primary lg:font-sans lg:text-xl lg:text-foreground">{a as string}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-wider text-muted-foreground lg:text-base lg:normal-case lg:tracking-normal lg:text-foreground">{b as string}</div>
+                </div>
               </div>
             );
           })}
         </div>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-lg">
-          <span className="flex text-primary">{[...Array(5)].map((_, i) => <Star key={i} className="h-6 w-6 fill-current" />)}</span>
-          <span>5.0 on Zillow • 100+ team reviews</span>
-          <span className="font-bold">Zillow</span>
+        <div className="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-border/60 bg-secondary/50 px-4 py-2 text-xs sm:text-lg">
+          <span className="flex text-primary">{[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current sm:h-6 sm:w-6" />)}</span>
+          <span><b>5.0</b> on Zillow · 100+ reviews</span>
         </div>
-        <div className="mt-6 text-center"><CTA small /></div>
+        <div className="mt-6 hidden text-center sm:block"><CTA small /></div>
       </section>
 
       {/* CASE STUDIES */}
