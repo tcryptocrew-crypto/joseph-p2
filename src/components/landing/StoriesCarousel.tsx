@@ -12,6 +12,9 @@ const stories = [
   { img: s1, alt: "Homeowner couple sharing their story" },
 ];
 
+// duplicated track so the centred video always has a neighbour on both sides
+const track = [...stories, ...stories];
+
 export function StoriesCarousel() {
   const [ref, api] = useEmblaCarousel({ loop: true, align: "center" });
   const [sel, setSel] = useState(0);
@@ -25,24 +28,25 @@ export function StoriesCarousel() {
 
   const prev = useCallback(() => api?.scrollPrev(), [api]);
   const next = useCallback(() => api?.scrollNext(), [api]);
+  const active = sel % stories.length;
 
   return (
-    <div className="relative mx-auto max-w-5xl px-10 sm:px-14">
+    <div className="relative mx-auto max-w-5xl">
       {/* warm glow behind the centred video */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[70%] w-[55%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-40 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-[46%] h-[62%] w-[52%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-35 blur-3xl"
         style={{ background: "var(--gradient-gold)" }}
       />
 
-      <div ref={ref} className="relative overflow-hidden py-2">
+      <div ref={ref} className="relative overflow-hidden px-4 py-2 sm:px-6">
         <div className="flex">
-          {stories.map((s, i) => (
-            <div key={i} className="min-w-0 shrink-0 basis-[62%] px-2.5 sm:basis-[40%] sm:px-4 lg:basis-[28%]">
+          {track.map((s, i) => (
+            <div key={i} className="min-w-0 shrink-0 basis-[70%] px-2 sm:basis-[34%] sm:px-3">
               <button
                 aria-label="Play homeowner story"
                 className={`group relative block aspect-[9/16] w-full overflow-hidden rounded-2xl transition-all duration-500 ${
-                  sel === i ? "gold-frame scale-100 opacity-100" : "scale-[0.86] border border-border opacity-45"
+                  active === i % stories.length ? "gold-frame scale-100 opacity-100" : "scale-[0.85] border border-border opacity-40"
                 }`}
               >
                 <img
@@ -63,30 +67,31 @@ export function StoriesCarousel() {
         </div>
       </div>
 
-      <button
-        onClick={prev}
-        aria-label="Previous story"
-        className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full border border-border bg-background/70 p-2.5 text-foreground backdrop-blur transition hover:border-primary hover:text-primary"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-      <button
-        onClick={next}
-        aria-label="Next story"
-        className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full border border-border bg-background/70 p-2.5 text-foreground backdrop-blur transition hover:border-primary hover:text-primary"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
-
-      <div className="mt-6 flex justify-center gap-2">
-        {stories.map((_, i) => (
-          <button
-            key={i}
-            aria-label={`Go to story ${i + 1}`}
-            onClick={() => api?.scrollTo(i)}
-            className={`h-2 rounded-full transition-all ${sel === i ? "w-6 bg-primary" : "w-2 bg-border"}`}
-          />
-        ))}
+      <div className="mt-7 flex items-center justify-center gap-5">
+        <button
+          onClick={prev}
+          aria-label="Previous story"
+          className="rounded-full border border-border p-2 text-foreground transition hover:border-primary hover:text-primary"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+        <div className="flex items-center gap-2">
+          {stories.map((_, i) => (
+            <button
+              key={i}
+              aria-label={`Go to story ${i + 1}`}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-2 rounded-full transition-all ${active === i ? "w-6 bg-primary" : "w-2 bg-border"}`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={next}
+          aria-label="Next story"
+          className="rounded-full border border-border p-2 text-foreground transition hover:border-primary hover:text-primary"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
       </div>
     </div>
   );
