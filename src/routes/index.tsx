@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ChevronRight, Play, Trophy, Layers, Home, Star, MapPin, Phone, CheckCircle2 } from "lucide-react";
+import { ChevronRight, Play, Trophy, Layers, Home, Star, MapPin, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
@@ -209,13 +209,23 @@ function Index() {
       <section id="evaluation" className="relative scroll-mt-4">
         <img src={formHouse} alt="Stone home at night" loading="lazy" width={1024} height={1024} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover lg:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-background/90 to-background lg:block" style={{ backgroundImage: "linear-gradient(90deg, transparent 0%, var(--background) 38%)" }} />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[2fr_3fr] lg:pl-[20%]">
-          <div>
-            <h2 className="text-4xl sm:text-[44px]">Before You Commit to Construction, Know What Your Other Option Looks Like.</h2>
-            <p className="mt-5 text-lg text-foreground/90">Start with a free home evaluation. Tell us what you own and what you want to change, and Joseph’s team will contact you to arrange a conversation.</p>
-            <p className="mt-6 flex items-center gap-2 font-serif text-xl italic text-primary">
-              <CheckCircle2 className="h-5 w-5" /> You do not need finished plans or a decision to sell.
-            </p>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[1.05fr_1fr] lg:pl-[20%]">
+          <div className="relative">
+            <div className="pointer-events-none absolute -left-10 -top-16 h-56 w-[130%] bg-[radial-gradient(ellipse_at_left,color-mix(in_oklab,var(--primary)_16%,transparent),transparent_70%)] blur-2xl" />
+            <div className="relative flex items-center gap-4">
+              <span className="gold-divider w-12 sm:w-20" />
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-primary sm:text-sm">Free Home Evaluation</span>
+            </div>
+            <h2 className="relative mt-6 text-[34px] leading-[1.14] sm:text-[42px] lg:text-[46px]">
+              Before You Commit to <em className="gold-text">Construction</em>, Know What Your{" "}
+              <span className="relative inline-block">
+                <em className="gold-text">Other Option</em>
+                <svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true" className="absolute -bottom-1 left-0 h-3 w-full text-primary/80">
+                  <path d="M3 9C38 3 74 12 112 6S186 3 217 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+                </svg>
+              </span>{" "}
+              Looks Like.
+            </h2>
           </div>
           <LeadForm />
         </div>
