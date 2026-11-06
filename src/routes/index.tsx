@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ChevronRight, Play, Trophy, Layers, Home, Star, MapPin, Phone } from "lucide-react";
+import { ChevronRight, Play, Trophy, Layers, Home, Star, MapPin, Phone, Hammer, KeyRound } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
@@ -140,31 +140,54 @@ function Index() {
       </section>
 
       {/* WRONG HOUSE */}
-      <section className="bg-section px-5 py-20 sm:py-28">
-        <div className="mx-auto max-w-5xl">
-          <div className="relative">
-            <div className="absolute -inset-x-10 -bottom-10 top-1/2 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--primary)_18%,transparent),transparent_70%)] blur-2xl" />
-            <img src={stayHome} alt="Elegant stone home with warm interior lights at dusk" loading="lazy" width={1600} height={912} className="relative aspect-[16/10] w-full rounded-2xl object-cover ring-1 ring-primary/30 sm:aspect-[21/9]" />
-          </div>
-          <div className="mx-auto mt-12 max-w-3xl text-center">
-            <h2 className="text-[34px] leading-[1.1] sm:text-[52px]">
+      <section className="relative overflow-hidden bg-section">
+        <div className="relative min-h-[560px] sm:min-h-[640px]">
+          <img src={stayHome} alt="Elegant stone home with warm interior lights at dusk" loading="lazy" width={1600} height={912} className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, color-mix(in oklab, var(--background) 55%, transparent) 0%, color-mix(in oklab, var(--background) 30%, transparent) 35%, var(--section) 100%)" }} />
+          <div className="relative mx-auto flex min-h-[560px] max-w-4xl flex-col items-center justify-end px-5 pb-14 text-center sm:min-h-[640px]">
+            <span className="rounded-full border border-primary/40 bg-background/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary backdrop-blur">Think Before You Build</span>
+            <h2 className="mt-6 text-[36px] leading-[1.08] text-balance sm:text-[60px]">
               A Bigger Version of Your House May Still Be the <em className="gold-text">Wrong House.</em>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/85 sm:text-lg">
               Another bedroom could solve the space problem. But what about the layout, the location, or the things you would still want to change?
             </p>
-            <p className="mt-14 font-serif text-xl italic text-primary sm:text-2xl">Before committing to construction, ask yourself:</p>
-            <div className="mx-auto mt-6 max-w-2xl rounded-2xl border border-primary/50 bg-background/70 px-6 py-8 shadow-[0_0_50px_-15px_var(--primary)] sm:px-12 sm:py-10">
-              <p className="font-serif text-[26px] leading-snug sm:text-[34px]">
-                When the work is finished, will this be <em className="text-primary">the home I want to stay in?</em>
+          </div>
+        </div>
+
+        <div className="relative mx-auto max-w-5xl px-5 pb-20 sm:pb-28">
+          <p className="text-center font-serif text-lg italic text-primary sm:text-2xl">Before committing to construction, ask yourself:</p>
+          <div className="relative mx-auto mt-10 max-w-3xl">
+            <div className="absolute -inset-1 rounded-3xl opacity-70 blur-xl" style={{ background: "var(--gradient-gold)" }} />
+            <div className="relative rounded-3xl border border-primary/60 bg-background px-6 py-10 text-center sm:px-14 sm:py-14">
+              <span className="absolute -top-7 left-1/2 -translate-x-1/2 font-serif text-7xl leading-none text-primary">“</span>
+              <p className="font-serif text-[26px] leading-snug text-balance sm:text-[38px]">
+                When the work is finished, will this be <em className="gold-text">the home I want to stay in?</em>
               </p>
             </div>
-            <div className="mx-auto mt-14 max-w-xl space-y-4 text-lg leading-relaxed">
-              <p>If you love your location and an addition gives you what you need, staying deserves a serious look.</p>
-              <p className="text-muted-foreground">But before you commit, you should also know what your current home could help you buy.</p>
+          </div>
+
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 sm:gap-6">
+            <div className="panel rounded-2xl border border-border/70 p-6 sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-full border border-primary/40 text-primary"><Hammer className="h-5 w-5" /></span>
+                <span className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">Path 01 · Stay & Build</span>
+              </div>
+              <p className="mt-5 text-lg leading-relaxed">If you love your location and an addition gives you what you need, staying deserves a serious look.</p>
             </div>
-            <div className="gold-divider mx-auto mt-10 w-16" />
-            <p className="mt-6 font-serif text-2xl italic text-primary sm:text-[28px]">Compare both paths before you start paying for one.</p>
+            <div className="relative rounded-2xl border border-primary/60 bg-background p-6 shadow-[0_0_60px_-20px_var(--primary)] sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-full text-primary-foreground" style={{ background: "var(--gradient-gold)" }}><KeyRound className="h-5 w-5" /></span>
+                <span className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Path 02 · Move Up</span>
+              </div>
+              <p className="mt-5 text-lg leading-relaxed">But before you commit, you should also know what your current home could help you buy.</p>
+            </div>
+          </div>
+
+          <div className="mt-14 flex items-center justify-center gap-4">
+            <span className="gold-divider w-10 sm:w-20" />
+            <p className="text-center font-serif text-xl italic text-primary text-balance sm:text-[28px]">Compare both paths before you start paying for one.</p>
+            <span className="gold-divider w-10 sm:w-20" />
           </div>
         </div>
       </section>
