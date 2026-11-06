@@ -157,7 +157,7 @@ function Index() {
 
         <div className="relative mx-auto max-w-5xl px-5 pb-20 sm:pb-28">
           <p className="text-center font-serif text-lg italic text-primary sm:text-2xl">Before committing to construction, ask yourself:</p>
-          <div className="relative mx-auto mt-6 max-w-3xl">
+          <div className="relative mx-auto mt-10 max-w-3xl">
             <div className="absolute -inset-1 rounded-3xl opacity-70 blur-xl" style={{ background: "var(--gradient-gold)" }} />
             <div className="relative rounded-3xl border border-primary/60 bg-background px-6 py-10 text-center sm:px-14 sm:py-14">
               <span className="absolute -top-7 left-1/2 -translate-x-1/2 font-serif text-7xl leading-none text-primary">“</span>
