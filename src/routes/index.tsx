@@ -210,13 +210,13 @@ function Index() {
         <img src={formHouse} alt="Stone home at night" loading="lazy" width={1024} height={1024} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover lg:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-background/90 to-background lg:block" style={{ backgroundImage: "linear-gradient(90deg, transparent 0%, var(--background) 38%)" }} />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[1.05fr_1fr] lg:pl-[20%]">
-          <div className="relative">
-            <div className="pointer-events-none absolute -left-10 -top-16 h-56 w-[130%] bg-[radial-gradient(ellipse_at_left,color-mix(in_oklab,var(--primary)_16%,transparent),transparent_70%)] blur-2xl" />
-            <div className="relative flex items-center gap-4">
-              <span className="gold-divider w-12 sm:w-20" />
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-primary sm:text-sm">Free Home Evaluation</span>
+          <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
+            <div className="relative flex items-center justify-center gap-3 lg:justify-start">
+              <span className="gold-divider w-8 sm:w-14" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-sm">Free Home Evaluation</span>
+              <span className="gold-divider w-8 sm:w-14 lg:hidden" />
             </div>
-            <h2 className="relative mt-6 text-[34px] leading-[1.14] sm:text-[42px] lg:text-[46px]">
+            <h2 className="relative mt-5 text-[28px] leading-[1.2] text-balance sm:text-[38px] lg:text-[44px]">
               Before You Commit to <em className="gold-text">Construction</em>, Know What Your{" "}
               <span className="relative inline-block">
                 <em className="gold-text">Other Option</em>
