@@ -72,7 +72,7 @@ export function LeadForm() {
           className={field}
         />
       </label>
-      <button type="submit" className="btn-gold w-full justify-center">
+      <button type="submit" className="btn-gold w-full justify-center px-5! py-2.5! text-sm! sm:text-base! [&>svg]:h-4! [&>svg]:w-4!">
         Request My Free Home Evaluation <ChevronRight className="h-5 w-5" />
       </button>
     </form>
