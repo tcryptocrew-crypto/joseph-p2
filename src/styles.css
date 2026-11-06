@@ -112,7 +112,12 @@
   display: inline-flex; align-items: center; gap: .6rem; padding: .95rem 2rem; border-radius: 9999px;
   background: var(--gradient-gold); color: var(--primary-foreground); font-weight: 600; font-size: 1.0625rem;
   box-shadow: var(--glow-gold); transition: all 300ms ease;
-  &:hover { filter: brightness(1.08); box-shadow: var(--glow-gold), 0 0 50px -8px color-mix(in oklab, var(--accent) 70%, transparent); transform: translateY(-1px); }
+  animation: btnPulse 2.8s ease-in-out infinite;
+  &:hover { filter: brightness(1.08); box-shadow: var(--glow-gold), 0 0 50px -8px color-mix(in oklab, var(--accent) 70%, transparent); transform: translateY(-1px); animation: none; }
+}
+@keyframes btnPulse {
+  0%, 100% { box-shadow: var(--glow-gold); }
+  50% { box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent), 0 8px 34px -4px color-mix(in oklab, var(--primary) 65%, transparent), 0 0 22px -2px color-mix(in oklab, var(--accent) 40%, transparent); }
 }
 @utility gold-frame { border: 1px solid color-mix(in oklab, var(--primary) 70%, transparent); box-shadow: var(--glow-soft); }
 @utility gold-text { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }

@@ -62,7 +62,7 @@ export function LeadForm() {
       </div>
       <label className="block">
         <span className="mb-1.5 block text-[15px] font-semibold">
-          What would your next home need that your current home is missing?{" "}
+          Tell us about your plan{" "}
           <span className="font-normal italic text-muted-foreground">Optional</span>
         </span>
         <textarea
