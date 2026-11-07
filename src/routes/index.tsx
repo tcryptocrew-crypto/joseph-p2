@@ -10,9 +10,9 @@ import logoAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house.jpg";
 
-const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
+const TITLE = "Sell & Buy Evaluation | Joseph Aziz Real Estate, Bergen County";
 const DESC =
-  "Before you spend $250,000 on an addition, compare what your home could sell for, be worth after the work, and what you could buy instead. Free home evaluation.";
+  "Find out what you could keep after selling, what your next home would cost, and how the two transactions could work together. Joseph Aziz helps you plan both.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,10 +29,22 @@ export const Route = createFileRoute("/")({
 });
 
 const faqs = [
-  ["We love our location. What if staying makes more sense?", "Then that belongs in the comparison. We will look at what you want to change, whether the proposed work addresses it, and how the numbers compare with moving."],
-  ["We already have an architect or construction estimate.", "Bring the plans and estimates you have. Joseph can evaluate the real-estate side of the decision while your architect and construction professionals address design, feasibility, and project costs."],
-  ["We do not have plans or estimates yet.", "Start with the home you own and what is no longer working. We can discuss the alternatives and identify what information is still needed before making a meaningful cost comparison."],
-  ["Is this an instant online valuation?", "No. The form starts a conversation with Joseph’s team. The evaluation considers your specific home and the changes you are considering, rather than returning an automated number."],
+  [
+    "Can I buy my next home before selling this one?",
+    "Possibly. It depends on your financing, whether you need the sale proceeds to close, and the terms available on the next purchase. Joseph’s goal is to help secure the right home before listing yours, but the sequence needs to work for your situation.",
+  ],
+  [
+    "What if the two closing dates do not line up?",
+    "We need to account for the gap, including where you would stay and when your sale funds become available. Joseph works with your lender and attorney to review the options before you commit. Matching closing dates cannot be guaranteed.",
+  ],
+  [
+    "Do I need to know which home I want before we talk?",
+    "No. Start with your current home and what the next one needs to offer. We can narrow down the towns, price range, and features before looking at specific properties.",
+  ],
+  [
+    "Do you only help people move into new construction?",
+    "No. We can compare existing homes and new construction based on your needs and budget. The priority is finding a home that gives you what you are moving for.",
+  ],
 ];
 
 function CTA({ small }: { small?: boolean }) {
@@ -74,20 +86,23 @@ function Index() {
         <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-6 text-center fade-up">
           <Logo />
           <div className="mt-4 inline-block rounded-xl border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider sm:text-sm">
-            For Bergen County homeowners considering an addition, <span className="text-primary">renovation, or rebuild</span>
+            <span className="text-primary">FOR BERGEN COUNTY HOMEOWNERS</span> WHO NEED TO SELL TO BUY THEIR NEXT HOME
           </div>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
-            Before You Spend{" "}
-            <span className="relative inline-block whitespace-nowrap px-[0.22em] align-baseline text-[1.05em] leading-none">
+            Before You List Your Home, Know How You’ll Buy the{" "}
+            <span className="relative inline-block whitespace-nowrap pl-[0.28em] pr-[0.24em] align-baseline text-[1.05em] leading-none">
               <span
                 aria-hidden
-                className="absolute inset-x-0 top-[0.08em] bottom-[0.06em] rounded-[0.14em]"
-                style={{ background: "var(--gradient-gold)" }}
+                className="absolute inset-x-0 rounded-[0.2em]"
+                style={{
+                  background: "var(--gradient-gold)",
+                  top: "0.01em",
+                  bottom: "-0.23em",
+                }}
               />
-              <span className="relative text-primary-foreground">$250,000</span>
+              <span className="relative text-primary-foreground">Bigger,</span>
             </span>{" "}
-            on an Addition, Find Out What It Would Take to Move Into{" "}
-            <em className="gold-text">the Home You Actually Want.</em>
+            <em className="gold-text">Better One.</em>
           </h1>
           <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
             <img src={vsl} alt="Luxury kitchen interior" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
@@ -99,26 +114,36 @@ function Index() {
               <span className="text-sm font-semibold uppercase tracking-[0.25em]">Watch the video</span>
             </span>
           </button>
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
-            Joseph Aziz’s Stay-or-Move Evaluation compares what your home could sell for today, what it could be worth after the work, and what you could buy instead, including the costs of selling and moving.
-          </p>
-          <div className="mt-8 [&>a]:!px-5 [&>a]:!py-3 [&>a]:!text-sm sm:[&>a]:!px-8 sm:[&>a]:!py-4 sm:[&>a]:!text-lg [&>a>svg]:h-4 [&>a>svg]:w-4"><CTA /></div>
+          <div className="mx-auto mt-6 max-w-3xl space-y-3">
+            <p className="text-lg text-foreground/90 sm:text-xl">
+              Find out what you could keep after selling, what your next home would cost, and how the two transactions could work together.
+            </p>
+            <p className="text-base text-muted-foreground sm:text-lg">
+              Joseph Aziz helps you plan both, with the goal of securing the right next home before listing yours.
+            </p>
+          </div>
+          <div className="mt-8 [&>a]:!px-5 [&>a]:!py-3 [&>a]:!text-sm sm:[&>a]:!px-8 sm:[&>a]:!py-4 sm:[&>a]:!text-lg [&>a>svg]:h-4 [&>a>svg]:w-4">
+            <p className="mb-3 text-sm text-foreground/80 sm:text-base">
+              See how Joseph approaches selling your current home and buying the next one.
+            </p>
+            <CTA />
+          </div>
         </div>
       </section>
 
       {/* TRUST */}
       <section className="px-5 pb-14">
         <p className="mx-auto mb-6 max-w-md text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary lg:hidden">
-          Free evaluation · No obligation to sell
+          Start with a free home evaluation · You do not need to be ready to list
         </p>
         <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 sm:gap-4 lg:grid-cols-4 lg:gap-8 lg:border-y lg:border-border/60 lg:py-8 lg:divide-x lg:divide-border/60">
           <p className="hidden border-l-2 border-primary pl-4 text-base font-semibold uppercase leading-snug tracking-wide lg:block">
-            Start with a free home evaluation. You do not have to decide to sell.
+            Start with a free home evaluation. You do not need to be ready to list.
           </p>
           {[
-            [Trophy, "#28", "in New Jersey"],
-            [Layers, "$400M+", "Total Sales"],
-            [Home, "Built", "His Own Home"],
+            [Trophy, "#28 in NJ", "Individual agent sales volume, 2026 RealTrends Verified"],
+            [Layers, "$400M+", "Career sales volume across New Jersey"],
+            [Home, "Built Custom", "Firsthand experience with construction decisions"],
           ].map(([Icon, a, b]) => {
             const I = Icon as typeof Trophy;
             return (
@@ -134,7 +159,7 @@ function Index() {
         </div>
         <div className="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-border/60 bg-secondary/50 px-4 py-2 text-xs sm:text-lg">
           <span className="flex text-primary">{[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current sm:h-6 sm:w-6" />)}</span>
-          <span><b>5.0</b> on Zillow · 100+ reviews</span>
+          <span><b>5.0</b> on Zillow • 100+ team reviews</span>
         </div>
         <div className="mt-6 hidden text-center sm:block"><CTA small /></div>
       </section>
@@ -146,14 +171,15 @@ function Index() {
         <StoriesCarousel />
       </section>
 
-      {/* WRONG HOUSE */}
+      {/* DECISION SECTION */}
       <StayOrMoveSection />
 
       {/* AGENT */}
       <section className="bg-background px-5 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="mx-auto max-w-3xl text-center text-[32px] leading-[1.15] sm:text-[48px]">
-            Work With an Agent Who Has Made Construction Decisions With <em className="gold-text">His Own Money.</em>
+            The Agent Selling Your Home Should Also Understand the One{" "}
+            <em className="gold-text">You’re Buying.</em>
           </h2>
           <div className="mt-14 grid items-center gap-12 md:grid-cols-[5fr_7fr] md:gap-16">
             <div className="relative mx-auto w-full max-w-sm">
@@ -162,10 +188,10 @@ function Index() {
               <img src={josephAsset} alt="Joseph Aziz handing house keys to new homeowners" loading="lazy" width={315} height={350} className="relative aspect-[9/10] w-full rounded-2xl object-cover" />
             </div>
             <div className="space-y-6 text-center text-[17px] leading-[1.75] text-foreground/90 sm:text-lg md:border-l md:border-primary/40 md:pl-12 md:text-left">
-              <p>I’m Joseph Aziz. I’ve built <span className="text-primary">my own custom home</span>, helped homeowners sell and move into new construction, and worked directly with builders to negotiate purchase prices, finishes, and extras.</p>
-              <p>That experience matters when you’re deciding whether to put more money into the house you own or buy something else.</p>
-              <p className="text-muted-foreground">We need to consider more than an attractive floor plan or a listing price. We need to look at what the work would accomplish, what the finished property could be worth, and what else you could buy.</p>
-              <p>If moving is the better fit, I can also help you <span className="text-primary">negotiate the next purchase</span> and coordinate it with the sale of your current home.</p>
+              <p>I’m Joseph Aziz. I’ve built <span className="text-primary">my own custom home</span>, helped homeowners sell and buy new construction, and worked directly with builders to negotiate prices, finishes, and extras.</p>
+              <p>I’m particular about the homes I show because <span className="text-primary">more square footage</span> does not automatically make a house a better fit.</p>
+              <p className="text-muted-foreground">I research the layout, lot, and what you’re getting for the price. Then I help negotiate the purchase and coordinate it with your sale.</p>
+              <p className="font-medium text-foreground">The goal is not just to sell your house. It is to get you into <span className="text-primary">a home worth moving for.</span></p>
             </div>
           </div>
         </div>
@@ -174,7 +200,7 @@ function Index() {
       {/* FAQ */}
       <section className="bg-secondary px-5 py-16">
         <Eyebrow>FAQs</Eyebrow>
-        <h2 className="mt-3 text-center text-4xl sm:text-[44px]">You Do Not Need to Decide to Sell Before We Talk.</h2>
+        <h2 className="mt-3 text-center text-4xl sm:text-[44px]">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="mx-auto mt-10 max-w-4xl space-y-3">
           {faqs.map(([q, a], i) => (
             <AccordionItem key={i} value={`f${i}`} className="panel rounded-lg border px-6 transition hover:border-primary/70">
@@ -193,18 +219,17 @@ function Index() {
           <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <div className="relative flex items-center justify-center gap-3 lg:justify-start">
               <span className="gold-divider w-8 sm:w-14" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-sm">Free Home Evaluation</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary sm:text-sm">Free Evaluation</span>
               <span className="gold-divider w-8 sm:w-14 lg:hidden" />
             </div>
             <h2 className="relative mt-5 text-[28px] leading-[1.2] text-balance sm:text-[38px] lg:text-[44px]">
-              Before You Commit to <em className="gold-text">Construction</em>, Know What Your{" "}
+              Before You List Your Home, Know How You’ll Buy the{" "}
               <span className="relative inline-block">
-                <em className="gold-text">Other Option</em>
+                <em className="gold-text">Bigger, Better One.</em>
                 <svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true" className="absolute -bottom-1 left-0 h-3 w-full text-primary/80">
                   <path d="M3 9C38 3 74 12 112 6S186 3 217 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
                 </svg>
-              </span>{" "}
-              Looks Like.
+              </span>
             </h2>
           </div>
           <LeadForm />
@@ -214,7 +239,10 @@ function Index() {
       {/* FOOTER */}
       <footer className="border-t border-border/60 bg-background px-5 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
-          <Logo compact />
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <Logo compact />
+            <span className="text-xs text-muted-foreground">Prestige Property Group Montclair</span>
+          </div>
           <div className="flex items-start gap-2"><MapPin className="mt-1 h-5 w-5 text-primary" /><span>151 Forest St, Unit H<br />Montclair, NJ 07042</span></div>
           <a href="tel:2017085067" className="flex items-center gap-2 hover:text-primary"><Phone className="h-5 w-5 text-primary" />201-708-5067</a>
           <div className="flex gap-2"><a href="#" className="hover:text-primary">Privacy Policy</a><span className="text-border">|</span><span>Equal Housing Opportunity</span></div>
