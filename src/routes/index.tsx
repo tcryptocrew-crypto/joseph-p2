@@ -114,18 +114,10 @@ function Index() {
               <span className="text-sm font-semibold uppercase tracking-[0.25em]">Watch the video</span>
             </span>
           </button>
-          <div className="mx-auto mt-6 max-w-3xl space-y-3">
-            <p className="text-lg text-foreground/90 sm:text-xl">
-              Find out what you could keep after selling, what your next home would cost, and how the two transactions could work together.
-            </p>
-            <p className="text-base text-muted-foreground sm:text-lg">
-              Joseph Aziz helps you plan both, with the goal of securing the right next home before listing yours.
-            </p>
-          </div>
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
+            Find out what you could keep after selling, what your next home would cost, and how the two transactions could work together.
+          </p>
           <div className="mt-8 [&>a]:!px-5 [&>a]:!py-3 [&>a]:!text-sm sm:[&>a]:!px-8 sm:[&>a]:!py-4 sm:[&>a]:!text-lg [&>a>svg]:h-4 [&>a>svg]:w-4">
-            <p className="mb-3 text-sm text-foreground/80 sm:text-base">
-              See how Joseph approaches selling your current home and buying the next one.
-            </p>
             <CTA />
           </div>
         </div>
