@@ -90,7 +90,7 @@ function Index() {
           </div>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
             Before You List Your Home, Know How You’ll Buy the{" "}
-            <span className="relative inline-block whitespace-nowrap pl-[0.28em] pr-[0.24em] align-baseline text-[1.05em] leading-none">
+            <span className="relative inline-block whitespace-nowrap px-[0.28em] align-baseline text-[1.05em] leading-none">
               <span
                 aria-hidden
                 className="absolute inset-x-0 rounded-[0.2em]"
@@ -100,9 +100,9 @@ function Index() {
                   bottom: "-0.23em",
                 }}
               />
-              <span className="relative text-primary-foreground">Bigger,</span>
+              <span className="relative text-primary-foreground">Bigger, Better</span>
             </span>{" "}
-            <em className="gold-text">Better One.</em>
+            <em className="gold-text">One.</em>
           </h1>
           <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
             <img src={vsl} alt="Luxury kitchen interior" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
