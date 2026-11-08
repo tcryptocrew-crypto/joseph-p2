@@ -126,11 +126,11 @@ function Index() {
       {/* TRUST */}
       <section className="px-5 pb-14">
         <p className="mx-auto mb-6 max-w-md text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary lg:hidden">
-          Start with a free home evaluation · You do not need to be ready to list
+          Free Evaluation · No Obligation to List
         </p>
         <div className="mx-auto grid max-w-6xl grid-cols-3 gap-2 sm:gap-4 lg:grid-cols-4 lg:gap-8 lg:border-y lg:border-border/60 lg:py-8 lg:divide-x lg:divide-border/60">
           <p className="hidden border-l-2 border-primary pl-4 text-base font-semibold uppercase leading-snug tracking-wide lg:block">
-            Start with a free home evaluation. You do not need to be ready to list.
+            Free evaluation. No obligation to list.
           </p>
           {[
             [Trophy, "#28 in NJ", "Individual agent sales volume, 2026 RealTrends Verified"],
