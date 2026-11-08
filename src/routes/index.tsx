@@ -133,9 +133,9 @@ function Index() {
             Free evaluation. No obligation to list.
           </p>
           {[
-            [Trophy, "#28 in NJ", "Individual agent sales volume, 2026 RealTrends Verified"],
-            [Layers, "$400M+", "Career sales volume across New Jersey"],
-            [Home, "Built Custom", "Firsthand experience with construction decisions"],
+            [Trophy, "#28", "in New Jersey"],
+            [Layers, "$400M+", "Total Sales"],
+            [Home, "Built", "His Own Home"],
           ].map(([Icon, a, b]) => {
             const I = Icon as typeof Trophy;
             return (
