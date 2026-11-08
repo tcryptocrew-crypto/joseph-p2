@@ -1,41 +1,54 @@
 import { useState } from "react";
-import { z } from "zod";
-import { ChevronRight, CheckCircle2 } from "lucide-react";
+import { ChevronRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import {
+  evaluationLeadSchema,
+  submitEvaluationLead,
+  type EvaluationLead,
+} from "@/lib/evaluation-lead";
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Please enter your full name").max(100),
-  email: z.string().trim().email("Please enter a valid email").max(255),
-  phone: z.string().trim().min(7, "Please enter a valid phone number").max(30),
-  address: z.string().trim().min(3, "Please enter your property address").max(200),
-  needs: z.string().trim().max(1000).optional(),
-});
-
-type Errors = Partial<Record<keyof z.infer<typeof schema>, string>>;
+type Errors = Partial<Record<keyof EvaluationLead, string>>;
 
 const field =
   "w-full rounded-md border border-border bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-primary focus:shadow-[var(--glow-soft)]";
 
 export function LeadForm() {
   const [errors, setErrors] = useState<Errors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    const r = schema.safeParse(data);
+    setSubmitError(null);
+
+    const rawData = Object.fromEntries(new FormData(e.currentTarget));
+    const r = evaluationLeadSchema.safeParse(rawData);
     if (!r.success) {
       const errs: Errors = {};
       r.error.issues.forEach((i) => (errs[i.path[0] as keyof Errors] = i.message));
       setErrors(errs);
       return;
     }
+
     setErrors({});
-    setDone(true);
+    setIsSubmitting(true);
+
+    try {
+      const result = await submitEvaluationLead({ data: r.data });
+      if (!result.saved) throw new Error("Contact save was not confirmed");
+      setDone(true);
+    } catch {
+      setSubmitError(
+        "There was a problem submitting your request. Please try again or contact Joseph directly.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (done)
     return (
-      <div className="panel gold-frame rounded-xl p-10 text-center">
+      <div className="panel gold-frame rounded-xl p-10 text-center animate-in fade-in duration-300">
         <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
         <h3 className="mt-4 text-3xl">Thank you.</h3>
         <p className="mt-3 text-muted-foreground">
@@ -44,37 +57,89 @@ export function LeadForm() {
       </div>
     );
 
-  const F = ({ name, label, type = "text", ph }: { name: keyof Errors; label: string; type?: string; ph: string }) => (
+  const F = ({
+    name,
+    label,
+    type = "text",
+    ph,
+  }: {
+    name: keyof Errors;
+    label: string;
+    type?: string;
+    ph: string;
+  }) => (
     <label className="block">
       <span className="mb-1.5 block text-[15px] font-semibold">{label}</span>
-      <input name={name} type={type} placeholder={ph} className={field} />
+      <input name={name} type={type} placeholder={ph} disabled={isSubmitting} className={field} />
       {errors[name] && <span className="mt-1 block text-sm text-destructive">{errors[name]}</span>}
     </label>
   );
 
   return (
-    <form onSubmit={onSubmit} noValidate className="panel gold-frame space-y-5 rounded-xl p-6 sm:p-8">
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="panel gold-frame space-y-5 rounded-xl p-6 sm:p-8"
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         {F({ name: "name", label: "Full name", ph: "Enter your full name" })}
-        {F({ name: "email", label: "Email address", type: "email", ph: "Enter your email address" })}
+        {F({
+          name: "email",
+          label: "Email address",
+          type: "email",
+          ph: "Enter your email address",
+        })}
         {F({ name: "phone", label: "Phone number", type: "tel", ph: "Enter your phone number" })}
         {F({ name: "address", label: "Property address", ph: "Enter your property address" })}
       </div>
+
       <label className="block">
         <span className="mb-1.5 block text-[15px] font-semibold">
-          Tell us about your plan{" "}
+          Tell me what you want to accomplish{" "}
           <span className="font-normal italic text-muted-foreground">Optional</span>
         </span>
         <textarea
           name="needs"
           rows={3}
+          disabled={isSubmitting}
           placeholder="Another bedroom, a better layout, more outdoor space, or something else."
           className={field}
         />
       </label>
-      <button type="submit" className="btn-gold w-full justify-center px-5! py-2.5! text-sm! sm:text-base! [&>svg]:h-4! [&>svg]:w-4!">
-        Request My Free Home Evaluation <ChevronRight className="h-5 w-5" />
-      </button>
+
+      {submitError && (
+        <div
+          role="alert"
+          className="flex items-center gap-2 rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive"
+        >
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          <span>{submitError}</span>
+        </div>
+      )}
+
+      <div className="space-y-3">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-gold w-full justify-center px-5! py-2.5! text-sm! sm:text-base! [&>svg]:h-4! [&>svg]:w-4! disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+              Submitting...
+            </>
+          ) : (
+            <>
+              Request My Free Home Evaluation <ChevronRight className="h-5 w-5" />
+            </>
+          )}
+        </button>
+
+        <p className="text-[11px] text-muted-foreground/80 text-center leading-relaxed">
+          By providing your phone number, you agree to receive communications regarding your
+          property evaluation.
+        </p>
+      </div>
     </form>
   );
 }

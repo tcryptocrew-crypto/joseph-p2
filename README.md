@@ -22,3 +22,21 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## GoHighLevel evaluation form
+
+The website form saves a contact using the HighLevel API, then enrolls the saved contact in the configured workflow. The original HighLevel form's property address and evaluation goals are mapped to their existing contact custom fields.
+
+Set these environment variables on the server:
+
+| Variable | Value |
+| --- | --- |
+| `GHL_PRIVATE_INTEGRATION_TOKEN` | Private Integration token with **Contacts Write** access, created in the form's sub-account |
+| `GHL_LOCATION_ID` | The form's sub-account ID (`F5UyRGb9N62uJFgPLaxw`) |
+| `GHL_WORKFLOW_ID` | ID of the published prospect email, SMS, and Google Sheets workflow |
+
+For local development, store the values in a private env file outside the repository and start Vite with `node --env-file=PATH_TO_PRIVATE_ENV node_modules/vite/bin/vite.js dev`. For hosting, configure the same values as server secrets. Keep the token out of Git and variables prefixed with `VITE_`.
+
+In the workflow, map the prospect email, phone, property address, and evaluation goals from the saved contact. Check the Google account and destination sheet, and enable workflow re-entry if repeat requests should run the actions again. Publish the workflow when the mappings are ready. The same workflow can still handle native HighLevel form submissions through its existing trigger. The website enters it directly by contact ID, so any actions using native form submission data need to use saved contact values for website leads.
+
+Check a controlled submission with a test inbox and phone number, then verify the contact, workflow execution, and sheet row. The site shows confirmation after HighLevel confirms the contact save. If enrollment fails, the contact remains saved and its ID is logged on the server for follow-up.

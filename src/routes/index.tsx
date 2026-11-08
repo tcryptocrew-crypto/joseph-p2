@@ -74,7 +74,7 @@ function Index() {
         <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-6 text-center fade-up">
           <Logo />
           <div className="mt-4 inline-block rounded-xl border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider sm:text-sm">
-            For Bergen County homeowners considering an addition, <span className="text-primary">renovation, or rebuild</span>
+            <span className="text-primary">For Bergen County homeowners</span> considering an addition, renovation, or rebuild
           </div>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
             Before You Spend{" "}
@@ -86,7 +86,16 @@ function Index() {
               />
               <span className="relative text-primary-foreground">$250,000</span>
             </span>{" "}
-            on an Addition, Find Out What It Would Take to Move Into{" "}
+            on an Addition, Find Out What It Would Take to{" "}
+            <span className="relative inline-block whitespace-nowrap px-[0.22em] align-baseline text-[1.05em] leading-none">
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-[0.08em] bottom-[0.06em] rounded-[0.14em]"
+                style={{ background: "var(--gradient-gold)" }}
+              />
+              <span className="relative text-primary-foreground">Move</span>
+            </span>{" "}
+            Into{" "}
             <em className="gold-text">the Home You Actually Want.</em>
           </h1>
           <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
