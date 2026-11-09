@@ -103,8 +103,8 @@
   body {
     background-color: var(--color-background);
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
     background-size: 64px 64px;
     color: var(--color-foreground);
   }
@@ -130,8 +130,8 @@
 @utility fade-up { animation: fadeUp .9s ease both; }
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.007) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px);} to { opacity:1; transform:none;} }
