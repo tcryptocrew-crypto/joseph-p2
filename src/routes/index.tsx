@@ -201,9 +201,32 @@ function Index() {
       </section>
 
       {/* FORM */}
-      <section id="evaluation" className="relative scroll-mt-4 bg-transparent">
-        <img src={formHouse} alt="Luxury modern custom home at dusk" loading="lazy" width={1200} height={1800} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover opacity-75 lg:block" />
-        <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-background/90 to-background lg:block" style={{ backgroundImage: "linear-gradient(90deg, transparent 0%, var(--background) 38%)" }} />
+      <section id="evaluation" className="relative scroll-mt-4 bg-transparent overflow-hidden">
+        {/* Ambient image with smooth multi-directional fade */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/2 overflow-hidden lg:block">
+          <img
+            src={formHouse}
+            alt="Luxury modern custom home at dusk"
+            loading="lazy"
+            width={1200}
+            height={1800}
+            className="h-full w-full object-cover object-center opacity-65"
+          />
+          {/* Smooth Right Fade */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--background) 50%, transparent) 35%, var(--background) 85%)",
+            }}
+          />
+          {/* Smooth Top & Bottom Fades to melt into pure black background */}
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background via-background/60 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/60 to-transparent" />
+          {/* Subtle Left Edge Fade */}
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background/50 to-transparent" />
+        </div>
+
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[1.05fr_1fr] lg:pl-[20%]">
           <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <div className="relative flex items-center justify-center gap-3 lg:justify-start">
@@ -227,14 +250,26 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-border/40 bg-transparent px-5 py-10">
+      <footer className="relative border-t border-primary/25 bg-[#080808] px-5 py-12 text-foreground">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
           <Logo compact />
-          <div className="flex items-start gap-2"><MapPin className="mt-1 h-5 w-5 text-primary" /><span>151 Forest St, Unit H<br />Montclair, NJ 07042</span></div>
-          <a href="tel:2017085067" className="flex items-center gap-2 hover:text-primary"><Phone className="h-5 w-5 text-primary" />201-708-5067</a>
-          <div className="flex gap-2"><a href="#" className="hover:text-primary">Privacy Policy</a><span className="text-border">|</span><span>Equal Housing Opportunity</span></div>
+          <div className="flex items-start gap-2">
+            <MapPin className="mt-1 h-5 w-5 text-primary shrink-0" />
+            <span>151 Forest St, Unit H<br />Montclair, NJ 07042</span>
+          </div>
+          <a href="tel:2017085067" className="flex items-center gap-2 hover:text-primary transition-colors">
+            <Phone className="h-5 w-5 text-primary shrink-0" />
+            201-708-5067
+          </a>
+          <div className="flex gap-2">
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <span className="text-border">|</span>
+            <span>Equal Housing Opportunity</span>
+          </div>
         </div>
-        <p className="mt-8 text-center text-sm italic text-muted-foreground">Property values are estimates, not guarantees of a future sale price. Individual client outcomes vary.</p>
+        <p className="mt-8 text-center text-sm italic text-muted-foreground/80">
+          Property values are estimates, not guarantees of a future sale price. Individual client outcomes vary.
+        </p>
       </footer>
       </div>
     </main>
