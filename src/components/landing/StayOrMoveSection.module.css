@@ -1,13 +1,13 @@
 /* The approved reference calls for gold rules, a pill label, italic accents,
    a photo fade and a subtle question-panel glow. These are scoped to this section. */
 .section {
-  --decision-ground: oklch(0 0 0);
+  --decision-ground: transparent;
   --decision-ink: var(--foreground);
-  --decision-gold: oklch(0.8 0.105 78);
+  --decision-gold: var(--primary);
   --decision-line: color-mix(in oklab, var(--decision-gold) 65%, transparent);
   position: relative;
   overflow: hidden;
-  background: transparent;
+  background: var(--decision-ground);
   color: var(--decision-ink);
 }
 
@@ -30,7 +30,7 @@
   position: absolute;
   inset: 0;
   content: "";
-  background: linear-gradient(180deg, transparent 55%, var(--decision-ground) 100%);
+  background: linear-gradient(180deg, transparent 40%, var(--background) 100%);
 }
 
 .content {
@@ -120,10 +120,11 @@
   max-width: 810px;
   margin: 20px auto 0;
   padding: 20px 17px;
-  border: 1px solid var(--decision-gold);
+  border: 1px solid color-mix(in oklab, var(--decision-gold) 60%, transparent);
   border-radius: 16px;
-  background: var(--decision-ground);
-  box-shadow: 0 0 22px -10px color-mix(in oklab, var(--decision-gold) 52%, transparent);
+  background: color-mix(in oklab, var(--card) 75%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--glow-soft);
 }
 
 .questionIcon {
@@ -189,7 +190,7 @@
   background: linear-gradient(
     180deg,
     transparent,
-    color-mix(in oklab, var(--decision-ground) 78%, transparent)
+    color-mix(in oklab, var(--background) 78%, transparent)
   );
 }
 
@@ -211,8 +212,8 @@
   display: inline-block;
   padding: 3px 10px;
   border-radius: 999px;
-  background: var(--decision-gold);
-  color: var(--decision-ground);
+  background: var(--gradient-gold);
+  color: var(--primary-foreground);
   font-size: 10px;
   font-weight: 700;
   line-height: 1.6;
