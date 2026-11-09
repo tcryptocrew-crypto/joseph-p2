@@ -77,7 +77,7 @@ function Eyebrow({ children }: { children: string }) {
 
 function Index() {
   return (
-    <main className="overflow-x-hidden bg-background text-foreground">
+    <main className="relative overflow-x-hidden bg-background bg-grid text-foreground">
       {/* HERO */}
       <section className="relative">
         <img src={hero} alt="Luxury Bergen County home at dusk" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-left" />
@@ -157,7 +157,7 @@ function Index() {
       </section>
 
       {/* CASE STUDIES */}
-      <section className="bg-secondary py-16">
+      <section className="relative py-16">
         <Eyebrow>Case Studies</Eyebrow>
         <h2 className="mt-3 mb-10 text-center text-4xl sm:text-[44px]">Real Homeowner Stories</h2>
         <StoriesCarousel />
@@ -167,7 +167,7 @@ function Index() {
       <StayOrMoveSection />
 
       {/* AGENT */}
-      <section className="bg-background px-5 py-20 sm:py-28">
+      <section className="relative px-5 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="mx-auto max-w-3xl text-center text-[32px] leading-[1.15] sm:text-[48px]">
             The Agent Selling Your Home Should Also Understand the One{" "}
@@ -190,7 +190,7 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-secondary px-5 py-16">
+      <section className="relative px-5 py-16">
         <Eyebrow>FAQs</Eyebrow>
         <h2 className="mt-3 text-center text-4xl sm:text-[44px]">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="mx-auto mt-10 max-w-4xl space-y-3">
@@ -229,7 +229,7 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border/60 bg-background px-5 py-10">
+      <footer className="relative border-t border-border/60 px-5 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
           <div className="flex flex-col items-center md:items-start gap-1">
             <Logo compact />
