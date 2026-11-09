@@ -54,26 +54,26 @@ export function StayOrMoveSection() {
       <div className={styles.content}>
         <header className={styles.intro}>
           <div className={styles.labelRow} data-decision-reveal>
-            <span className={styles.label}>Think Before You Build</span>
+            <span className={styles.label}>Sell to Buy</span>
           </div>
           <h2 id="stay-or-move-title" className={styles.title} data-decision-reveal>
-            A Bigger Version of Your House May Still Be the <em>Wrong House.</em>
+            A Great Offer on Your House Doesn’t Answer <em>Where You’ll Live Next.</em>
           </h2>
           <p className={styles.supporting} data-decision-reveal>
-            Another bedroom could solve the space problem. But what about the layout, the location,
-            or the things you would still want to change?
+            You want the extra bedroom, the better layout, or the home you no longer need to renovate.
+            But the money for that purchase may be tied up in the house you own.
           </p>
         </header>
 
         <p className={styles.reflection} data-decision-reveal>
-          Before committing to construction, ask yourself:
+          Plan before you list:
         </p>
         <div className={styles.question} data-decision-reveal>
           <div className={styles.questionIcon} aria-hidden="true">
             <HousePlus strokeWidth={1.2} />
           </div>
           <p>
-            When the work is finished, will this be <em>the home I want to stay in?</em>
+            Your sale price, next purchase, and closing dates need to work together. <em>Plan them before you list.</em>
           </p>
         </div>
 
@@ -84,7 +84,7 @@ export function StayOrMoveSection() {
                 src={stay}
                 srcSet={`${staySmall} 480w, ${stay} 1000w`}
                 sizes="(min-width: 1000px) 480px, (min-width: 600px) 44vw, 45vw"
-                alt="An inviting rear living space opening onto a landscaped patio at dusk"
+                alt="Inviting home interior and living space"
                 title="Photography: Creative Impressions Media / Pexels"
                 loading="lazy"
                 decoding="async"
@@ -93,11 +93,10 @@ export function StayOrMoveSection() {
               />
             </div>
             <div className={styles.pathCopy}>
-              <span className={styles.pathLabel}>Path 01</span>
-              <h3 id="stay-build-title">Stay &amp; Build</h3>
+              <span className={styles.pathLabel}>Selling First?</span>
+              <h3 id="stay-build-title">Pressure to Settle</h3>
               <p>
-                If you love your location and an addition gives you what you need, staying deserves
-                a serious look.
+                Sell before you know your options, and you could feel pressured to settle.
               </p>
             </div>
           </article>
@@ -107,7 +106,7 @@ export function StayOrMoveSection() {
                 src={move}
                 srcSet={`${moveSmall} 480w, ${move} 1000w`}
                 sizes="(min-width: 1000px) 480px, (min-width: 600px) 44vw, 45vw"
-                alt="A detached family home with stone details and landscaped grounds at sunset"
+                alt="Detached luxury family home"
                 title="Photography: Binyamin Mellish / Pexels"
                 loading="lazy"
                 decoding="async"
@@ -116,18 +115,17 @@ export function StayOrMoveSection() {
               />
             </div>
             <div className={styles.pathCopy}>
-              <span className={styles.pathLabel}>Path 02</span>
-              <h3 id="move-up-title">Move Up</h3>
+              <span className={styles.pathLabel}>Buying First?</span>
+              <h3 id="move-up-title">Unconfirmed Proceeds</h3>
               <p>
-                But before you commit, you should also know what your current home could help you
-                buy.
+                Commit to buying before checking the numbers, and you could be relying on sale proceeds you haven’t confirmed.
               </p>
             </div>
           </article>
         </div>
 
         <div className={styles.closing} data-decision-reveal>
-          <p>Compare both paths before you start paying for one.</p>
+          <p>Your sale price, next purchase, and closing dates need to work together. Plan them before you list.</p>
         </div>
       </div>
     </section>
