@@ -77,13 +77,7 @@ function Eyebrow({ children }: { children: string }) {
 
 function Index() {
   return (
-    <main className="relative overflow-x-hidden bg-background text-foreground">
-      {/* Still/Fixed Background Grid that does not move with scroll */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-0 bg-grid"
-      />
-      <div className="relative z-10">
+    <main className="relative overflow-x-hidden text-foreground">
       {/* HERO */}
       <section className="relative">
         <img src={hero} alt="Luxury Bergen County home at dusk" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-left" />
@@ -247,7 +241,6 @@ function Index() {
         </div>
         <p className="mt-8 text-center text-sm italic text-muted-foreground">Property values are estimates, not guarantees of a future sale price. Individual client outcomes vary.</p>
       </footer>
-      </div>
     </main>
   );
 }
