@@ -5,7 +5,7 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import hero from "@/assets/hero-mansion.jpg";
-import vsl from "@/assets/vsl-interior.jpg";
+import vsl from "@/assets/vsl-luxury-interior.jpg";
 import logoAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house.jpg";
@@ -65,15 +65,15 @@ function Eyebrow({ children }: { children: string }) {
 
 function Index() {
   return (
-    <main className="overflow-x-hidden bg-background text-foreground">
+    <main className="overflow-x-hidden bg-transparent text-foreground">
       {/* HERO */}
-      <section className="relative">
+      <section className="relative bg-transparent">
         <img src={hero} alt="Luxury Bergen County home at dusk" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-left" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_55%,transparent),var(--background)_85%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--background)_55%,transparent),var(--background)_90%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
         <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-6 text-center fade-up">
           <Logo />
-          <div className="mt-4 inline-block rounded-xl border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider sm:text-sm">
+          <div className="mt-4 inline-block rounded-xl border border-primary/70 bg-background/50 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm">
             <span className="text-primary">For Bergen County homeowners</span> considering an addition, renovation, or rebuild
           </div>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
@@ -98,14 +98,14 @@ function Index() {
             Into{" "}
             <em className="gold-text">the Home You Actually Want.</em>
           </h1>
-          <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
-            <img src={vsl} alt="Luxury kitchen interior" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
-            <span className="absolute inset-0 bg-background/35" />
+          <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-2xl shadow-2xl">
+            <img src={vsl} alt="Modern luxury architectural interior at dusk" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+            <span className="absolute inset-0 bg-background/40" />
             <span className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary bg-background/60 text-primary shadow-[var(--glow-gold)] transition group-hover:scale-110">
+              <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary bg-background/70 text-primary shadow-[var(--glow-gold)] backdrop-blur-md transition duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
                 <Play className="ml-1 h-9 w-9 fill-current" />
               </span>
-              <span className="text-sm font-semibold uppercase tracking-[0.25em]">Watch the video</span>
+              <span className="text-sm font-semibold uppercase tracking-[0.25em] text-foreground">Watch the video</span>
             </span>
           </button>
           <p className="mx-auto mt-6 max-w-3xl text-lg text-foreground/90 sm:text-xl">
@@ -116,7 +116,7 @@ function Index() {
       </section>
 
       {/* TRUST */}
-      <section className="px-5 pb-14">
+      <section className="relative bg-transparent px-5 pb-14">
         <p className="mx-auto mb-6 max-w-md text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary lg:hidden">
           Free evaluation · No obligation to sell
         </p>
@@ -131,7 +131,7 @@ function Index() {
           ].map(([Icon, a, b]) => {
             const I = Icon as typeof Trophy;
             return (
-              <div key={a as string} className="gold-frame flex flex-col items-center gap-1.5 rounded-xl bg-secondary/60 px-2 py-4 text-center lg:flex-row lg:justify-center lg:gap-4 lg:rounded-none lg:bg-transparent lg:p-0 lg:text-left lg:[border:none] lg:shadow-none">
+              <div key={a as string} className="gold-frame flex flex-col items-center gap-1.5 rounded-xl panel px-2 py-4 text-center lg:flex-row lg:justify-center lg:gap-4 lg:rounded-none lg:bg-transparent lg:p-0 lg:text-left lg:[border:none] lg:shadow-none">
                 <I className="h-6 w-6 text-primary lg:h-10 lg:w-10" strokeWidth={1.4} />
                 <div>
                   <div className="font-serif text-xl font-semibold leading-none text-primary lg:font-sans lg:text-xl lg:text-foreground">{a as string}</div>
@@ -141,7 +141,7 @@ function Index() {
             );
           })}
         </div>
-        <div className="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-border/60 bg-secondary/50 px-4 py-2 text-xs sm:text-lg">
+        <div className="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-primary/40 panel px-4 py-2 text-xs sm:text-lg">
           <span className="flex text-primary">{[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current sm:h-6 sm:w-6" />)}</span>
           <span><b>5.0</b> on Zillow · 100+ reviews</span>
         </div>
@@ -149,7 +149,7 @@ function Index() {
       </section>
 
       {/* CASE STUDIES */}
-      <section className="bg-secondary py-16">
+      <section className="relative bg-transparent py-16">
         <Eyebrow>Case Studies</Eyebrow>
         <h2 className="mt-3 mb-10 text-center text-4xl sm:text-[44px]">Real Homeowner Stories</h2>
         <StoriesCarousel />
@@ -159,7 +159,7 @@ function Index() {
       <StayOrMoveSection />
 
       {/* AGENT */}
-      <section className="bg-background px-5 py-20 sm:py-28">
+      <section className="relative bg-transparent px-5 py-20 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="mx-auto max-w-3xl text-center text-[32px] leading-[1.15] sm:text-[48px]">
             Work With an Agent Who Has Made Construction Decisions With <em className="gold-text">His Own Money.</em>
@@ -181,12 +181,12 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-secondary px-5 py-16">
+      <section className="relative bg-transparent px-5 py-16">
         <Eyebrow>FAQs</Eyebrow>
         <h2 className="mt-3 text-center text-4xl sm:text-[44px]">You Do Not Need to Decide to Sell Before We Talk.</h2>
         <Accordion type="single" collapsible className="mx-auto mt-10 max-w-4xl space-y-3">
           {faqs.map(([q, a], i) => (
-            <AccordionItem key={i} value={`f${i}`} className="panel rounded-lg border px-6 transition hover:border-primary/70">
+            <AccordionItem key={i} value={`f${i}`} className="panel rounded-lg px-6 transition hover:border-primary/70">
               <AccordionTrigger className="py-5 text-left font-sans text-lg font-semibold hover:no-underline">{q}</AccordionTrigger>
               <AccordionContent className="pb-5 text-lg text-muted-foreground">{a}</AccordionContent>
             </AccordionItem>
@@ -195,8 +195,8 @@ function Index() {
       </section>
 
       {/* FORM */}
-      <section id="evaluation" className="relative scroll-mt-4">
-        <img src={formHouse} alt="Stone home at night" loading="lazy" width={1024} height={1024} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover lg:block" />
+      <section id="evaluation" className="relative scroll-mt-4 bg-transparent">
+        <img src={formHouse} alt="Stone home at night" loading="lazy" width={1024} height={1024} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover opacity-60 lg:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-background/90 to-background lg:block" style={{ backgroundImage: "linear-gradient(90deg, transparent 0%, var(--background) 38%)" }} />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[1.05fr_1fr] lg:pl-[20%]">
           <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
@@ -221,7 +221,7 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border/60 bg-background px-5 py-10">
+      <footer className="relative border-t border-border/40 bg-transparent px-5 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
           <Logo compact />
           <div className="flex items-start gap-2"><MapPin className="mt-1 h-5 w-5 text-primary" /><span>151 Forest St, Unit H<br />Montclair, NJ 07042</span></div>
