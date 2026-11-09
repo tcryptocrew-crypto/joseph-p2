@@ -17,10 +17,10 @@ export const submitEvaluationLead = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const results: { ghlSaved?: boolean; sheetSaved?: boolean; contactId?: string } = {};
 
-    // 1. Save to Google Sheet (Source: VSL 1)
+    // 1. Save to Google Sheet (Source: VSL 2)
     try {
       const { saveToGoogleSheet } = await import("./google-sheet.server");
-      const sheetRes = await saveToGoogleSheet(data, data.landingPageSource || "VSL 1");
+      const sheetRes = await saveToGoogleSheet(data, data.landingPageSource || "VSL 2");
       results.sheetSaved = sheetRes.saved;
     } catch (err) {
       console.error("[Submit] Failed to save to Google Sheet:", err);
@@ -30,7 +30,10 @@ export const submitEvaluationLead = createServerFn({ method: "POST" })
     // 2. Save to HighLevel (GoHighLevel CRM)
     try {
       const { saveEvaluationLead } = await import("./highlevel.server");
-      const ghlRes = await saveEvaluationLead(data);
+      const ghlRes = await saveEvaluationLead({
+        ...data,
+        landingPageSource: data.landingPageSource || "VSL 2",
+      });
       results.ghlSaved = ghlRes.saved;
       if (ghlRes.contactId) {
         results.contactId = ghlRes.contactId;

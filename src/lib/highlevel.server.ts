@@ -51,6 +51,13 @@ export async function saveEvaluationLead(
     return { saved: false };
   }
 
+  const tags = [
+    "website-lead",
+    "sell-and-buy-evaluation",
+    "vsl-2",
+    formId,
+  ];
+
   // 1. Optional Inbound Webhook dispatch (if configured in GHL workflow)
   if (webhookUrl) {
     try {
@@ -64,10 +71,10 @@ export async function saveEvaluationLead(
           address: lead.address,
           needs: lead.needs || "",
           source: "Joseph | Free Home Evaluation",
-          landingPageSource: lead.landingPageSource || "VSL 1",
+          landingPageSource: lead.landingPageSource || "VSL 2",
           locationId,
           formId,
-          tags: ["website-lead", "stay-or-move-evaluation", "vsl-1", formId],
+          tags,
           submittedAt: new Date().toISOString(),
         }),
         signal: AbortSignal.timeout(6_000),
@@ -94,12 +101,7 @@ export async function saveEvaluationLead(
       phone: lead.phone,
       address1: lead.address,
       source: "Joseph | Free Home Evaluation",
-      tags: [
-        "website-lead",
-        "stay-or-move-evaluation",
-        "vsl-1",
-        formId,
-      ],
+      tags,
       customFields,
     });
 
