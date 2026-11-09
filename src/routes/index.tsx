@@ -5,7 +5,7 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import hero from "@/assets/hero-mansion.jpg";
-import vsl from "@/assets/vsl-luxury-interior.jpg";
+import vsl from "@/assets/vsl-stock.jpg";
 import logoAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house.jpg";
@@ -77,7 +77,13 @@ function Eyebrow({ children }: { children: string }) {
 
 function Index() {
   return (
-    <main className="relative overflow-x-hidden bg-background bg-grid text-foreground">
+    <main className="relative overflow-x-hidden bg-background text-foreground">
+      {/* Still/Fixed Background Grid that does not move with scroll */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-0 bg-grid"
+      />
+      <div className="relative z-10">
       {/* HERO */}
       <section className="relative">
         <img src={hero} alt="Luxury Bergen County home at dusk" width={1920} height={1088} className="absolute inset-0 h-full w-full object-cover object-left" />
@@ -241,6 +247,7 @@ function Index() {
         </div>
         <p className="mt-8 text-center text-sm italic text-muted-foreground">Property values are estimates, not guarantees of a future sale price. Individual client outcomes vary.</p>
       </footer>
+      </div>
     </main>
   );
 }
