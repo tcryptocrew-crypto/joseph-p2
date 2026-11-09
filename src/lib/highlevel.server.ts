@@ -3,13 +3,15 @@ import type { EvaluationLead } from "./evaluation-lead";
 const highLevelOrigin = "https://services.leadconnectorhq.com";
 const propertyAddressField = "arNAYodrZv4Cv08XWfmV";
 const evaluationGoalsField = "0fOh5jbfik5iWW97Qmvs";
+const defaultLocationId = "vrDGBhvc95fD3XQ4JGzW";
+const defaultFormId = "068Tat3aDkIti56tSHoO";
 
 function postToHighLevel(path: string, token: string, body: object) {
   return fetch(`${highLevelOrigin}${path}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      Version: "v3",
+      Version: "2021-07-28",
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -19,18 +21,69 @@ function postToHighLevel(path: string, token: string, body: object) {
   });
 }
 
-export async function saveEvaluationLead(lead: EvaluationLead): Promise<{ saved: boolean }> {
-  const token = process.env["GHL_PRIVATE_INTEGRATION_TOKEN"]?.trim();
-  const locationId = process.env["GHL_LOCATION_ID"]?.trim();
-  const workflowId = process.env["GHL_WORKFLOW_ID"]?.trim();
+export async function saveEvaluationLead(
+  lead: EvaluationLead,
+): Promise<{ saved: boolean; contactId?: string }> {
+  const token =
+    process.env["GHL_PRIVATE_INTEGRATION_TOKEN"]?.trim() ||
+    process.env["VITE_GHL_PRIVATE_INTEGRATION_TOKEN"]?.trim();
 
-  if (!token || !locationId || !workflowId) {
-    console.error("[HighLevel] Evaluation form configuration is incomplete.");
+  const locationId =
+    process.env["GHL_LOCATION_ID"]?.trim() ||
+    process.env["VITE_GHL_LOCATION_ID"]?.trim() ||
+    defaultLocationId;
+
+  const formId =
+    process.env["GHL_FORM_ID"]?.trim() ||
+    process.env["VITE_GHL_FORM_ID"]?.trim() ||
+    defaultFormId;
+
+  const workflowId =
+    process.env["GHL_WORKFLOW_ID"]?.trim() ||
+    process.env["VITE_GHL_WORKFLOW_ID"]?.trim();
+
+  const webhookUrl =
+    process.env["GHL_WEBHOOK_URL"]?.trim() ||
+    process.env["VITE_GHL_WEBHOOK_URL"]?.trim();
+
+  if (!token || !locationId) {
+    console.error("[HighLevel] Evaluation form configuration is incomplete: missing GHL token or location ID.");
     return { saved: false };
   }
 
-  const customFields = [{ id: propertyAddressField, fieldValue: lead.address }];
-  if (lead.needs) customFields.push({ id: evaluationGoalsField, fieldValue: lead.needs });
+  // 1. Optional Inbound Webhook dispatch (if configured in GHL workflow)
+  if (webhookUrl) {
+    try {
+      await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: lead.name,
+          email: lead.email,
+          phone: lead.phone,
+          address: lead.address,
+          needs: lead.needs || "",
+          source: "Joseph | Free Home Evaluation",
+          landingPageSource: lead.landingPageSource || "VSL 1",
+          locationId,
+          formId,
+          tags: ["website-lead", "stay-or-move-evaluation", "vsl-1", formId],
+          submittedAt: new Date().toISOString(),
+        }),
+        signal: AbortSignal.timeout(6_000),
+      });
+    } catch (whErr) {
+      console.warn("[HighLevel] Webhook dispatch warning:", whErr);
+    }
+  }
+
+  // 2. HighLevel Contact Upsert
+  const customFields: Array<{ id: string; value: string; fieldValue: string }> = [
+    { id: propertyAddressField, value: lead.address, fieldValue: lead.address },
+  ];
+  if (lead.needs) {
+    customFields.push({ id: evaluationGoalsField, value: lead.needs, fieldValue: lead.needs });
+  }
 
   let contactId: string;
   try {
@@ -39,11 +92,20 @@ export async function saveEvaluationLead(lead: EvaluationLead): Promise<{ saved:
       name: lead.name,
       email: lead.email,
       phone: lead.phone,
+      address1: lead.address,
+      source: "Joseph | Free Home Evaluation",
+      tags: [
+        "website-lead",
+        "stay-or-move-evaluation",
+        "vsl-1",
+        formId,
+      ],
       customFields,
-      source: "Stay-or-Move Evaluation Landing Page",
     });
+
     if (!response.ok) {
-      console.error(`[HighLevel] Contact save rejected (HTTP ${response.status}).`);
+      const errBody = await response.text();
+      console.error(`[HighLevel] Contact save rejected (HTTP ${response.status}):`, errBody);
       return { saved: false };
     }
 
@@ -53,29 +115,28 @@ export async function saveEvaluationLead(lead: EvaluationLead): Promise<{ saved:
       return { saved: false };
     }
     contactId = result.contact.id;
-  } catch {
-    console.error("[HighLevel] Contact save request could not be confirmed.");
+  } catch (err) {
+    console.error("[HighLevel] Contact save request could not be confirmed:", err);
     return { saved: false };
   }
 
-  try {
-    const response = await postToHighLevel(
-      `/contacts/${encodeURIComponent(contactId)}/workflow/${encodeURIComponent(workflowId)}`,
-      token,
-      {},
-    );
-    const result = response.ok
-      ? ((await response.json()) as { succeeded?: boolean; succeded?: boolean })
-      : null;
-    if ((result?.succeeded ?? result?.succeded) !== true) {
-      console.error(
-        `[HighLevel] Saved contact ${contactId}; workflow enrollment was not confirmed (HTTP ${response.status}).`,
+  // 3. Optional Direct Workflow Enrollment (if workflowId is provided)
+  if (workflowId) {
+    try {
+      const response = await postToHighLevel(
+        `/contacts/${encodeURIComponent(contactId)}/workflow/${encodeURIComponent(workflowId)}`,
+        token,
+        {},
       );
+      if (!response.ok) {
+        console.warn(
+          `[HighLevel] Saved contact ${contactId}; workflow enrollment returned HTTP ${response.status}.`,
+        );
+      }
+    } catch (wfErr) {
+      console.warn(`[HighLevel] Saved contact ${contactId}; workflow enrollment request failed:`, wfErr);
     }
-  } catch {
-    console.error(`[HighLevel] Saved contact ${contactId}; workflow enrollment was not confirmed.`);
   }
 
-  // A follow-up failure must not ask the visitor to resubmit a saved lead.
-  return { saved: true };
+  return { saved: true, contactId };
 }

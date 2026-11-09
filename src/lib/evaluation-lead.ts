@@ -15,7 +15,7 @@ export type EvaluationLead = z.infer<typeof evaluationLeadSchema>;
 export const submitEvaluationLead = createServerFn({ method: "POST" })
   .validator(evaluationLeadSchema)
   .handler(async ({ data }) => {
-    const results: { ghlSaved?: boolean; sheetSaved?: boolean } = {};
+    const results: { ghlSaved?: boolean; sheetSaved?: boolean; contactId?: string } = {};
 
     // 1. Save to Google Sheet (Source: VSL 1)
     try {
@@ -27,11 +27,14 @@ export const submitEvaluationLead = createServerFn({ method: "POST" })
       results.sheetSaved = false;
     }
 
-    // 2. Save to HighLevel (if configured)
+    // 2. Save to HighLevel (GoHighLevel CRM)
     try {
       const { saveEvaluationLead } = await import("./highlevel.server");
       const ghlRes = await saveEvaluationLead(data);
       results.ghlSaved = ghlRes.saved;
+      if (ghlRes.contactId) {
+        results.contactId = ghlRes.contactId;
+      }
     } catch (err) {
       console.error("[Submit] Failed to save to HighLevel:", err);
       results.ghlSaved = false;
