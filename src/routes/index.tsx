@@ -5,10 +5,10 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import hero from "@/assets/hero-mansion.jpg";
-import vsl from "@/assets/vsl-luxury-interior.jpg";
+import vsl from "@/assets/vsl-stock.jpg";
 import logoAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
-import formHouse from "@/assets/form-house.jpg";
+import formHouse from "@/assets/form-house-stock.jpg";
 
 const TITLE = "Stay-or-Move Evaluation | Joseph Aziz Real Estate, Bergen County";
 const DESC =
@@ -202,7 +202,7 @@ function Index() {
 
       {/* FORM */}
       <section id="evaluation" className="relative scroll-mt-4 bg-transparent">
-        <img src={formHouse} alt="Stone home at night" loading="lazy" width={1024} height={1024} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover opacity-60 lg:block" />
+        <img src={formHouse} alt="Luxury modern custom home at dusk" loading="lazy" width={1200} height={1800} className="absolute inset-y-0 left-0 hidden h-full w-1/3 object-cover opacity-75 lg:block" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-background/90 to-background lg:block" style={{ backgroundImage: "linear-gradient(90deg, transparent 0%, var(--background) 38%)" }} />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-20 lg:grid-cols-[1.05fr_1fr] lg:pl-[20%]">
           <div className="relative mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
