@@ -116,8 +116,8 @@
   body {
     background-color: var(--color-background);
     background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
     background-size: 60px 60px;
     background-attachment: fixed;
     color: var(--color-foreground);
@@ -186,6 +186,13 @@
   background: color-mix(in oklab, var(--card) 70%, transparent);
   border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
   backdrop-filter: blur(8px);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 @utility fade-up {
