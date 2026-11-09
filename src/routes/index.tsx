@@ -96,11 +96,15 @@ function Index() {
           </div>
           <h1 className="mx-auto mt-6 max-w-4xl text-4xl leading-[1.2] sm:text-5xl lg:text-[64px] lg:leading-[1.18]">
             Before You List Your Home, Know How You’ll Buy the{" "}
-            <span className="relative inline-block whitespace-nowrap px-[0.22em] align-baseline text-[1.05em] leading-none">
+            <span className="relative inline-block whitespace-nowrap px-[0.24em] align-baseline text-[1.05em] leading-none">
               <span
                 aria-hidden
-                className="absolute inset-x-0 top-[0.08em] bottom-[0.06em] rounded-[0.14em]"
-                style={{ background: "var(--gradient-gold)" }}
+                className="absolute inset-x-0 rounded-[0.16em]"
+                style={{
+                  background: "var(--gradient-gold)",
+                  top: "0.02em",
+                  bottom: "-0.15em",
+                }}
               />
               <span className="relative text-primary-foreground">Bigger, Better</span>
             </span>{" "}
