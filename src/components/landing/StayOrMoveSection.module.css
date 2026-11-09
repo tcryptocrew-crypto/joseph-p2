@@ -1,7 +1,7 @@
 /* The approved reference calls for gold rules, a pill label, italic accents,
    a photo fade and a subtle question-panel glow. These are scoped to this section. */
 .section {
-  --decision-ground: oklch(0.145 0.014 160);
+  --decision-ground: oklch(0 0 0);
   --decision-ink: var(--foreground);
   --decision-gold: oklch(0.8 0.105 78);
   --decision-line: color-mix(in oklab, var(--decision-gold) 65%, transparent);

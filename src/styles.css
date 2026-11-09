@@ -67,29 +67,29 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.145 0.008 160);
+  --background: oklch(0 0 0);
   --foreground: oklch(0.955 0.012 85);
-  --card: oklch(0.225 0.018 150);
+  --card: oklch(0.12 0 0);
   --card-foreground: oklch(0.955 0.012 85);
-  --popover: oklch(0.2 0.015 150);
+  --popover: oklch(0.10 0 0);
   --popover-foreground: oklch(0.955 0.012 85);
   --primary: oklch(0.73 0.085 78);
-  --primary-foreground: oklch(0.16 0.01 160);
-  --secondary: oklch(0.18 0.012 155);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0 0 0);
   --secondary-foreground: oklch(0.955 0.012 85);
-  --muted: oklch(0.2 0.014 150);
+  --muted: oklch(0.14 0 0);
   --muted-foreground: oklch(0.82 0.008 100);
   --accent: oklch(0.83 0.075 82);
-  --accent-foreground: oklch(0.16 0.01 160);
+  --accent-foreground: oklch(0 0 0);
   --destructive: oklch(0.65 0.2 27);
   --destructive-foreground: oklch(0.98 0 0);
   --border: oklch(0.4 0.04 80);
   --input: oklch(0.4 0.04 80);
   --ring: oklch(0.73 0.085 78);
   --gold-dark: oklch(0.55 0.07 75);
-  --section: oklch(0.2 0.014 150);
+  --section: oklch(0 0 0);
   --chart-1: oklch(0.73 0.085 78); --chart-2: oklch(0.6 0.1 180); --chart-3: oklch(0.4 0.07 227); --chart-4: oklch(0.83 0.18 84); --chart-5: oklch(0.77 0.18 70);
-  --sidebar: oklch(0.18 0.012 155); --sidebar-foreground: oklch(0.955 0.012 85); --sidebar-primary: oklch(0.73 0.085 78); --sidebar-primary-foreground: oklch(0.16 0.01 160); --sidebar-accent: oklch(0.225 0.018 150); --sidebar-accent-foreground: oklch(0.955 0.012 85); --sidebar-border: oklch(0.4 0.04 80); --sidebar-ring: oklch(0.73 0.085 78);
+  --sidebar: oklch(0 0 0); --sidebar-foreground: oklch(0.955 0.012 85); --sidebar-primary: oklch(0.73 0.085 78); --sidebar-primary-foreground: oklch(0 0 0); --sidebar-accent: oklch(0.12 0 0); --sidebar-accent-foreground: oklch(0.955 0.012 85); --sidebar-border: oklch(0.4 0.04 80); --sidebar-ring: oklch(0.73 0.085 78);
   --gradient-gold: linear-gradient(180deg, oklch(0.86 0.075 82), oklch(0.72 0.09 76));
   --glow-gold: 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent), 0 8px 30px -6px color-mix(in oklab, var(--primary) 55%, transparent);
   --glow-soft: 0 0 40px -10px color-mix(in oklab, var(--primary) 45%, transparent);
