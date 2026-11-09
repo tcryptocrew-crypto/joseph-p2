@@ -5,7 +5,7 @@ import { LeadForm } from "@/components/landing/LeadForm";
 import { StoriesCarousel } from "@/components/landing/StoriesCarousel";
 import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import hero from "@/assets/hero-mansion.jpg";
-import vsl from "@/assets/vsl-interior.jpg";
+import vsl from "@/assets/vsl-luxury-interior.jpg";
 import logoAsset from "@/assets/joseph-aziz-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house.jpg";
@@ -105,7 +105,7 @@ function Index() {
             <em className="gold-text">One.</em>
           </h1>
           <button aria-label="Watch the video" className="group gold-frame relative mx-auto mt-8 block aspect-video w-full max-w-3xl overflow-hidden rounded-xl">
-            <img src={vsl} alt="Luxury kitchen interior" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+            <img src={vsl} alt="Luxury estate great room interior" loading="lazy" width={1280} height={720} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
             <span className="absolute inset-0 bg-background/35" />
             <span className="absolute inset-0 flex flex-col items-center justify-center gap-4">
               <span className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-primary bg-background/60 text-primary shadow-[var(--glow-gold)] transition group-hover:scale-110">
