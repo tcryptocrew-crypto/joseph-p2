@@ -114,10 +114,10 @@ export function StoriesCarousel() {
               >
                 <div
                   onClick={() => setModalStoryIndex(i % stories.length)}
-                  className={`group relative block aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl transition-all duration-500 ${
+                  className={`group relative block aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl bg-black transition-all duration-500 ${
                     isActive
-                      ? "gold-frame scale-100 opacity-100"
-                      : "scale-[0.85] border border-border opacity-40 hover:opacity-75"
+                      ? "gold-frame scale-100 shadow-xl"
+                      : "scale-[0.88] border border-border shadow-md"
                   }`}
                   role="button"
                   tabIndex={0}
@@ -137,13 +137,25 @@ export function StoriesCarousel() {
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
 
-                  {/* Clean dark tint */}
-                  <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/10" />
+                  {/* Dark fade overlay - subtle on active, balanced dark fade on side cards */}
+                  <div
+                    className={`absolute inset-0 transition-all duration-500 ${
+                      isActive
+                        ? "bg-black/10 group-hover:bg-black/0"
+                        : "bg-black/45 group-hover:bg-black/30"
+                    }`}
+                  />
 
                   {/* Play Button Icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-primary/60 bg-background/60 text-primary shadow-[var(--glow-gold)] backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Play className="ml-1 h-7 w-7 fill-current" />
+                    <span
+                      className={`flex items-center justify-center rounded-full border border-primary/70 shadow-[var(--glow-gold)] backdrop-blur-sm transition-all duration-300 group-hover:scale-110 ${
+                        isActive
+                          ? "h-11 w-11 sm:h-13 sm:w-13 bg-background/80 text-primary group-hover:bg-primary group-hover:text-primary-foreground"
+                          : "h-9 w-9 sm:h-11 sm:w-11 bg-black/45 text-white/90 group-hover:bg-primary group-hover:text-primary-foreground"
+                      }`}
+                    >
+                      <Play className={`fill-current ${isActive ? "ml-0.5 sm:ml-1 h-5 w-5 sm:h-6 sm:w-6" : "ml-0.5 h-4 w-4 sm:h-5 sm:w-5"}`} />
                     </span>
                   </div>
                 </div>
