@@ -10,18 +10,13 @@
  * The @theme inline block maps CSS custom properties to Tailwind utility
  * classes (e.g. --color-primary -> bg-primary, text-primary).
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * The :root block uses the reference black with matching neutral tints.
  */
 
 @theme inline {
   --font-serif: "DM Serif Display", Georgia, serif;
   --font-sans: "Manrope", system-ui, sans-serif;
-  --color-gold-dark: var(--gold-dark);
+  --color-rating: var(--rating);
   --color-section: var(--section);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -65,35 +60,53 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-:root,
-.dark {
+:root {
+  color-scheme: light;
   --radius: 0.5rem;
-  --background: #ffffff;
-  --foreground: oklch(0.18 0.01 200);
-  --card: #ffffff;
-  --card-foreground: oklch(0.18 0.01 200);
-  --popover: #ffffff;
-  --popover-foreground: oklch(0.18 0.01 200);
-  --primary: oklch(0.70 0.12 78);
-  --primary-foreground: #000000;
-  --secondary: #f3f4f6;
-  --secondary-foreground: oklch(0.18 0.01 200);
-  --muted: #f3f4f6;
-  --muted-foreground: oklch(0.48 0.02 200);
-  --accent: oklch(0.80 0.11 82);
-  --accent-foreground: #000000;
-  --destructive: oklch(0.65 0.2 27);
-  --destructive-foreground: #ffffff;
-  --border: oklch(0.88 0.005 200);
-  --input: oklch(0.88 0.005 200);
-  --ring: oklch(0.70 0.12 78);
-  --gold-dark: oklch(0.55 0.07 75);
-  --section: #ffffff;
-  --chart-1: oklch(0.70 0.12 78); --chart-2: oklch(0.6 0.1 180); --chart-3: oklch(0.4 0.07 227); --chart-4: oklch(0.83 0.18 84); --chart-5: oklch(0.77 0.18 70);
-  --sidebar: #ffffff; --sidebar-foreground: oklch(0.18 0.01 200); --sidebar-primary: oklch(0.70 0.12 78); --sidebar-primary-foreground: #000000; --sidebar-accent: #f3f4f6; --sidebar-accent-foreground: oklch(0.18 0.01 200); --sidebar-border: oklch(0.88 0.005 200); --sidebar-ring: oklch(0.70 0.12 78);
-  --gradient-gold: linear-gradient(180deg, oklch(0.86 0.075 82), oklch(0.72 0.09 76));
-  --glow-gold: 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent), 0 8px 30px -6px color-mix(in oklab, var(--primary) 55%, transparent);
-  --glow-soft: 0 0 40px -10px color-mix(in oklab, var(--primary) 45%, transparent);
+  --background: oklch(0.982 0.004 60); /* Warm ivory */
+  --foreground: oklch(0.265 0 0); /* Neutral dark ink */
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: #191919; /* Black sampled from the client's reference */
+  --brand-light: color-mix(in srgb, var(--primary) 82%, white);
+  --brand-deep: color-mix(in srgb, var(--primary) 72%, black);
+  --contrast-ground: var(--primary);
+  --contrast-tint: var(--secondary);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.965 0 0); /* Soft gray */
+  --secondary-foreground: var(--foreground);
+  --muted: var(--secondary);
+  --muted-foreground: oklch(0.46 0 0);
+  --accent: oklch(0.939 0 0); /* Pale gray wash */
+  --accent-foreground: var(--primary);
+  --destructive: oklch(0.48 0.17 25);
+  --destructive-foreground: var(--primary-foreground);
+  --border: oklch(0.891 0 0);
+  --input: oklch(0.622 0 0);
+  --ring: var(--primary);
+  --rating: oklch(0.5743 0.1026 77.5); /* Gold for review stars */
+  --section: var(--secondary);
+  --chart-1: var(--primary);
+  --chart-2: var(--brand-deep);
+  --chart-3: var(--foreground);
+  --chart-4: var(--input);
+  --chart-5: var(--muted-foreground);
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --glow-soft: 0 6px 18px -9px color-mix(in srgb, var(--primary) 17%, transparent);
+  --ease-settle: cubic-bezier(0.2, 0.7, 0.25, 1);
+  --landing-section-title-max: 2.125rem;
+  --landing-section-title: clamp(1.125rem, calc(0.3125rem + 4vw), var(--landing-section-title-max));
+  --landing-copy-size: clamp(0.9375rem, 3vw, 1rem);
 }
 
 @layer base {
@@ -101,36 +114,391 @@
     border-color: var(--color-border);
   }
 
-    body {
-    background-color: #ffffff;
-    background-image: none;
+  html {
+    background-color: var(--color-background);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.95), transparent 70%);
+    background-attachment: fixed;
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.15;
   }
 }
 
-@layer base { body { font-family: var(--font-sans); font-size: 18px; line-height: 1.65; } html { scroll-behavior: smooth; } h1,h2,h3 { font-family: var(--font-serif); font-weight: 400; line-height: 1.15; } }
+@utility evaluation-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 9999px;
+  background:
+    radial-gradient(ellipse 80% 75% at 50% -22%, #ffead271, transparent),
+    linear-gradient(180deg, var(--brand-light), var(--primary) 55%, var(--brand-deep));
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  text-align: center;
+  border: 1px solid oklch(0.54 0.063 65);
+  box-shadow: inset 0 1px 0 #fff4df45, 0 6px 16px -6px #19191945;
+  transition: transform 200ms ease, filter 200ms ease;
 
-@utility btn-gold {
-  display: inline-flex; align-items: center; gap: .6rem; padding: .95rem 2rem; border-radius: 9999px;
-  background: var(--gradient-gold); color: var(--primary-foreground); font-weight: 600; font-size: 1.0625rem;
-  box-shadow: var(--glow-gold); transition: all 300ms ease;
-  animation: btnPulse 2.8s ease-in-out infinite;
-  &:hover { filter: brightness(1.08); box-shadow: var(--glow-gold), 0 0 50px -8px color-mix(in oklab, var(--accent) 70%, transparent); transform: translateY(-1px); animation: none; }
+  & > svg {
+    flex-shrink: 0;
+  }
+
+  @media (width >= 640px) {
+    min-height: 3rem;
+    padding-inline: 1.375rem;
+    font-size: 0.9375rem;
+  }
+
+  @media (width >= 1024px) {
+    padding-inline: 1.75rem;
+    font-size: 1rem;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: 0 0 5px 1px #d5b37870, 0 2px 16px 3px #bc914f53;
+    opacity: 0.5;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:not(:disabled)::after {
+      animation: evaluation-glow 5.5s ease-in-out infinite;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    &:not(:disabled):hover {
+      filter: brightness(1.06);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:not(:disabled):active {
+      transform: translateY(1px);
+      transition-duration: 90ms;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+  }
 }
-@keyframes btnPulse {
-  0%, 100% { box-shadow: var(--glow-gold); }
-  50% { box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent), 0 8px 34px -4px color-mix(in oklab, var(--primary) 65%, transparent), 0 0 22px -2px color-mix(in oklab, var(--accent) 40%, transparent); }
+
+@keyframes evaluation-glow {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
 }
-@utility gold-frame { border: 1px solid color-mix(in oklab, var(--primary) 70%, transparent); box-shadow: var(--glow-soft); }
-@utility gold-text { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
-@utility gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
-@utility panel {
-  background: #ffffff;
+
+.evaluation-submit {
+  padding-inline: 0.875rem;
+  font-size: 0.875rem;
+}
+
+@media (width < 360px) {
+  .evaluation-submit {
+    padding-inline: 0.5rem;
+  }
+}
+
+@utility media-frame {
   border: 1px solid var(--border);
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--glow-soft);
 }
-@utility fade-up { animation: fadeUp .9s ease both; }
+
+@utility section-rule {
+  height: 1px;
+  background-color: var(--eyebrow-rule, var(--border));
+}
+
+.section-eyebrow {
+  color: var(--eyebrow-ink, var(--primary));
+}
+
+.faq-section {
+  --eyebrow-ink: var(--contrast-tint);
+  --eyebrow-rule: color-mix(in oklab, var(--contrast-tint) 34%, transparent);
+  background: var(--contrast-ground);
+  color: var(--background);
+}
+
+.faq-section .panel[data-state="open"] {
+  background: var(--contrast-tint);
+}
+
+.story-viewport::before,
+.story-viewport::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset-block: 0;
+  width: clamp(2rem, 12%, 7rem);
+  pointer-events: none;
+}
+
+.story-viewport::before {
+  left: 0;
+  background: linear-gradient(to right, color-mix(in oklab, var(--contrast-tint) 58%, transparent), transparent);
+}
+
+.story-viewport::after {
+  right: 0;
+  background: linear-gradient(to left, color-mix(in oklab, var(--contrast-tint) 58%, transparent), transparent);
+}
+
+@utility headline-mark {
+  background: linear-gradient(110deg, var(--primary), var(--brand-deep));
+  border: 1px solid var(--primary);
+}
+
+@utility panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--glow-soft);
+}
+
+.trust-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: clamp(1rem, 2.2vw, 1.75rem) 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+  background: var(--card);
+  box-shadow: var(--glow-soft);
+  text-align: center;
+}
+
+.trust-stat-icon {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.trust-stat-value {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: clamp(1.45rem, 3.8vw, 2.25rem);
+  line-height: 1.1;
+}
+
+.trust-stat-label {
+  margin-top: 0.3rem;
+  color: var(--muted-foreground);
+  font-size: clamp(0.75rem, 1.5vw, 0.925rem);
+  line-height: 1.35;
+}
+
+.trust-stat-featured {
+  background: var(--secondary);
+  border-color: color-mix(in oklab, var(--primary) 23%, var(--card));
+}
+
+.trust-stat-featured .trust-stat-icon {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.trust-stat-featured .trust-stat-value { color: var(--primary); }
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .trust-stat {
+    transition: transform 180ms var(--ease-settle), border-color 180ms, box-shadow 180ms;
+  }
+
+  .trust-stat:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--primary) 38%, var(--card));
+    box-shadow: 0 9px 22px -10px color-mix(in srgb, var(--primary) 23%, transparent);
+  }
+}
+
 @utility bg-grid {
-  background-image: none;
+  display: none;
 }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(18px);} to { opacity:1; transform:none;} }
+
+@utility fade-up {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: fadeUp 560ms var(--ease-settle) both;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+.brand-logo {
+  aspect-ratio: 203 / 89;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
+
+.wistia-video wistia-player {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wistia-video wistia-player:defined {
+  background-image: none !important;
+}
+
+.wistia-video wistia-player:not(:defined) {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: blur(5px);
+}
+
+.video-resume {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin: auto;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  background: rgb(25 25 25 / 80%);
+  color: white;
+  cursor: pointer;
+}
+
+.video-resume svg {
+  width: 22px;
+  height: 22px;
+  margin-left: 3px;
+  fill: currentColor;
+}
+
+.video-resume:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
+}
+
+.hero-highlight {
+  display: inline-block;
+  padding: 0 0.25em 0.11em;
+  border-radius: 0.22em;
+  font-size: 0.98em;
+  font-style: italic;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.hero-title .hero-outcome {
+  font-style: italic;
+}
+
+@media (width >= 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (width >= 1024px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+@media (width < 1024px) {
+  .landing-section-title {
+    font-size: var(--landing-section-title);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .landing-copy {
+    font-size: var(--landing-copy-size);
+    line-height: 1.6;
+  }
+}
+
+@media (width < 640px) {
+  :root {
+    --landing-section-title-max: 1.75rem;
+  }
+
+  .trust-stat {
+    gap: 0.5rem;
+    padding-block: 0.875rem;
+  }
+
+  .trust-stat-icon {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  .trust-stat-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .trust-stat-value {
+    font-size: clamp(1.0625rem, 4vw, 1.25rem);
+  }
+
+  .trust-stat-label {
+    font-size: 0.6875rem;
+  }
+
+}

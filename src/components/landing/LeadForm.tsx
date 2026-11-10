@@ -15,7 +15,7 @@ type FormData = z.infer<typeof schema>;
 type Errors = Partial<Record<keyof FormData, string>>;
 
 const field =
-  "w-full rounded-md border border-border bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-primary focus:shadow-[var(--glow-soft)]";
+  "w-full rounded-md border border-input bg-white px-4 py-3 text-base text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/35";
 
 export function LeadForm() {
   const [errors, setErrors] = useState<Errors>({});
@@ -122,7 +122,7 @@ export function LeadForm() {
 
   if (done)
     return (
-      <div className="panel gold-frame rounded-xl p-10 text-center animate-in fade-in duration-300">
+      <div className="panel rounded-xl p-10 text-center animate-in fade-in duration-300">
         <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
         <h3 className="mt-4 text-3xl">Thank you.</h3>
         <p className="mt-3 text-muted-foreground">
@@ -158,7 +158,7 @@ export function LeadForm() {
   );
 
   return (
-    <form onSubmit={onSubmit} noValidate className="panel gold-frame space-y-5 rounded-xl p-6 sm:p-8">
+    <form onSubmit={onSubmit} noValidate className="panel space-y-5 rounded-2xl p-4 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         {F({ name: "name", label: "Full name", ph: "Enter your full name" })}
         {F({ name: "email", label: "Email address", type: "email", ph: "Enter your email address" })}
@@ -187,11 +187,11 @@ export function LeadForm() {
         </div>
       )}
 
-      <div className="space-y-3">
+      <div className="space-y-3 text-center">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-gold w-full justify-center px-5! py-2.5! text-sm! sm:text-base! [&>svg]:h-4! [&>svg]:w-4! disabled:opacity-75 disabled:cursor-not-allowed cursor-pointer"
+          className="evaluation-button evaluation-submit cursor-pointer disabled:cursor-not-allowed disabled:opacity-75"
         >
           {isSubmitting ? (
             <>
@@ -200,12 +200,12 @@ export function LeadForm() {
             </>
           ) : (
             <>
-              Request My Free Home Evaluation <ChevronRight className="h-5 w-5" />
+              Request My Free Home Evaluation <ChevronRight className="size-4 max-[359px]:hidden" aria-hidden="true" />
             </>
           )}
         </button>
 
-        <p className="text-[11px] text-muted-foreground/80 text-center leading-relaxed">
+        <p className="text-[11px] text-muted-foreground text-center leading-relaxed">
           By providing your phone number, you agree to receive communications regarding your property evaluation.
         </p>
       </div>
