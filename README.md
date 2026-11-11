@@ -23,6 +23,12 @@ npm i
 npm run dev
 ```
 
+## P2 Lead Feedback sheet
+
+The P2 website form writes to the `Lead Feedback` tab in `Joseph Lead Sheet`. It fills columns A–F using the headers in row 2. The remaining columns are for the team to fill in.
+
+Use the existing P3 Lead Feedback Receiver. Set `GOOGLE_SHEET_WEBHOOK_URL` on the P2 server to its deployed Web app `/exec` URL. Set `GOOGLE_SHEET_WEBHOOK_SECRET` on the P2 server to the existing matching Script Property value. P2 sends `webhookSecret` and `landingPageSource: "VSL 2"` and requires a successful JSON response with `saved: true` before showing success. The receiver adds the timestamp in column A and writes the five form fields in columns B–F. Configure these values in the P2 Vercel project, `elevate21/josephazizrealestate`.
+
 ## GoHighLevel evaluation form
 
 The website form saves a contact using the HighLevel API, then enrolls the saved contact in the configured workflow. The original HighLevel form's property address and evaluation goals are mapped to their existing contact custom fields.

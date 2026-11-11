@@ -41,20 +41,6 @@ export function LeadForm() {
 
     const validData = r.data;
     const ghlWebhookUrl = (import.meta.env.VITE_GHL_WEBHOOK_URL as string | undefined)?.trim();
-    const sheetWebhookUrl =
-      (import.meta.env.VITE_GOOGLE_SHEET_WEBHOOK_URL as string | undefined)?.trim() ||
-      "https://script.google.com/macros/s/AKfycby47KQUMYOTJHLkXo3aH6tylLbmM4Fw2izJCclGnjQ7fJzyiYhCeHPXRLysvhZtatxI/exec";
-
-    // Google Sheet exact payload per requirements:
-    const googleSheetPayload = {
-      dateSubmitted: new Date().toLocaleString("en-US", { timeZone: "America/New_York" }),
-      fullName: validData.name,
-      email: validData.email,
-      phoneNumber: validData.phone,
-      propertyAddress: validData.address,
-      whatTheyAreLookingFor: validData.needs || "",
-      landingPageSource: "VSL 2",
-    };
 
     // GoHighLevel standardized payload
     const payload = {
@@ -78,20 +64,13 @@ export function LeadForm() {
     };
 
     try {
-      // 1. Submit to Google Sheet via Server Function (avoids CORS) with direct client fallback
+      // Wait for the new sheet to confirm the row before showing success.
+      let sheetSaved = false;
       try {
         await submitLeadToGoogleSheet({ data: validData });
-      } catch (serverErr) {
-        console.warn("[Google Sheet] Server function error, falling back to direct fetch:", serverErr);
-        await fetch(sheetWebhookUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8",
-          },
-          body: JSON.stringify(googleSheetPayload),
-          redirect: "follow",
-          mode: "no-cors",
-        });
+        sheetSaved = true;
+      } catch {
+        console.error("[Google Sheet] Lead Feedback append was not confirmed");
       }
 
       // 2. Submit to GoHighLevel if webhook URL is provided
@@ -109,6 +88,7 @@ export function LeadForm() {
         }
       }
 
+      if (!sheetSaved) throw new Error("Google Sheet append was not confirmed");
       setDone(true);
     } catch (err: unknown) {
       console.error("[Lead Form Error]:", err);
