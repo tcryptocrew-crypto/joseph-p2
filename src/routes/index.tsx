@@ -31,6 +31,7 @@ export const Route = createFileRoute("/")({
         async: true,
         type: "module",
       })),
+      { src: "https://link.msgsndr.com/js/form_embed.js", async: true },
     ],
   }),
   component: Index,
@@ -130,7 +131,7 @@ function Index() {
           </p>
           {[
             { Icon: Trophy, value: "#28", label: "in New Jersey" },
-            { Icon: Layers, value: "$400M+", label: "Total Sales", featured: true },
+            { Icon: Layers, value: "$600M+", label: "Total Sales", featured: true },
             { Icon: Home, value: "Built", label: "His Own Home" },
           ].map(({ Icon, value, label, featured }) => (
             <div key={label} className={featured ? "trust-stat trust-stat-featured" : "trust-stat"}>

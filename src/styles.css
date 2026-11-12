@@ -63,7 +63,7 @@
 :root {
   color-scheme: light;
   --radius: 0.5rem;
-  --background: oklch(0.982 0.004 60); /* Warm ivory */
+  --background: #FFFBF7;
   --foreground: oklch(0.265 0 0); /* Neutral dark ink */
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
@@ -121,9 +121,6 @@
 
   body {
     background-color: var(--color-background);
-    background-image:
-      radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.95), transparent 70%);
-    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-size: 18px;

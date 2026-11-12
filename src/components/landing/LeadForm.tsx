@@ -1,7 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import { ChevronRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { submitLeadToGoogleSheet } from "@/lib/submit-lead";
+
+export function LeadForm() {
+  useEffect(() => {
+    const scriptSrc = "https://link.msgsndr.com/js/form_embed.js";
+    const existing = document.querySelector<HTMLScriptElement>(`script[src="${scriptSrc}"]`);
+    if (!existing) {
+      const script = document.createElement("script");
+      script.src = scriptSrc;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div className="w-full max-w-xl mx-auto min-h-[646px]">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/068Tat3aDkIti56tSHoO"
+        style={{
+          width: "100%",
+          height: "100%",
+          minHeight: "646px",
+          border: "none",
+          borderRadius: "20px",
+        }}
+        id="inline-068Tat3aDkIti56tSHoO"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Joseph | Free Home Evaluation"
+        data-height="646"
+        data-layout-iframe-id="inline-068Tat3aDkIti56tSHoO"
+        data-form-id="068Tat3aDkIti56tSHoO"
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+        title="Joseph | Free Home Evaluation"
+      />
+    </div>
+  );
+}
 
 const schema = z.object({
   name: z.string().trim().min(1, "Please enter your full name").max(100),
@@ -17,7 +60,7 @@ type Errors = Partial<Record<keyof FormData, string>>;
 const field =
   "w-full rounded-md border border-input bg-white px-4 py-3 text-base text-foreground placeholder:text-muted-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/35";
 
-export function LeadForm() {
+export function CustomLeadForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);

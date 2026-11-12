@@ -1,6 +1,6 @@
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { LeadForm } from "@/components/landing/LeadForm";
+import { LeadForm, CustomLeadForm } from "@/components/landing/LeadForm";
 import { submitLeadToGoogleSheet } from "@/lib/submit-lead";
 
 vi.mock("@/lib/submit-lead", () => ({ submitLeadToGoogleSheet: vi.fn() }));
@@ -25,7 +25,7 @@ afterEach(() => {
 });
 
 function submitForm() {
-  render(<LeadForm />);
+  render(<CustomLeadForm />);
   for (const [label, value] of [
     ["Full name", "P2 LIVE TEST"],
     ["Email address", "p2@example.test"],
@@ -38,6 +38,16 @@ function submitForm() {
 }
 
 describe("P2 live form Sheet confirmation", () => {
+  it("renders the embedded GoHighLevel evaluation form iframe", () => {
+    render(<LeadForm />);
+    const iframe = screen.getByTitle("Joseph | Free Home Evaluation");
+    expect(iframe).toBeInTheDocument();
+    expect(iframe).toHaveAttribute(
+      "src",
+      "https://api.leadconnectorhq.com/widget/form/068Tat3aDkIti56tSHoO",
+    );
+  });
+
   it("submits once and confirms success after the Sheet save and existing GHL webhook", async () => {
     saveLead.mockResolvedValueOnce({ success: true });
     submitForm();
