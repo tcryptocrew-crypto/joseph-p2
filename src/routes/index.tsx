@@ -203,7 +203,7 @@ function Index() {
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/2 overflow-hidden lg:block">
           <img
             src={formHouse}
-            alt="Stone home at night"
+            alt="Modern white home at twilight"
             loading="lazy"
             width={1024}
             height={1024}
