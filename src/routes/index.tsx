@@ -7,6 +7,7 @@ import { StayOrMoveSection } from "@/components/landing/StayOrMoveSection";
 import { HeroVideo } from "@/components/landing/HeroVideo";
 import logoDarkAsset from "@/assets/joseph-aziz-logo-dark.png";
 import logoLightAsset from "@/assets/joseph-aziz-logo-light.png";
+import prestigeLogoLight from "@/assets/prestige-logo-light.png";
 import josephAsset from "@/assets/joseph-aziz-keys.png";
 import formHouse from "@/assets/form-house.jpg";
 
@@ -246,11 +247,21 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative border-t border-primary bg-primary px-5 py-12 text-background">
+      <footer className="relative border-t border-primary/20 bg-primary px-5 py-12 text-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-base md:flex-row">
-          <div className="flex flex-col items-center md:items-start gap-1">
-            <Logo compact light />
-            <span className="text-xs text-secondary/85">Prestige Property Group Montclair</span>
+          <div className="flex flex-col items-center md:items-start gap-2.5">
+            <img
+              src={prestigeLogoLight}
+              alt="Prestige Property Group Montclair"
+              className="h-10 sm:h-12 w-auto object-contain"
+              loading="lazy"
+            />
+            <img
+              src={logoLightAsset}
+              alt="Joseph Aziz Real Estate"
+              className="h-5 sm:h-5.5 w-auto object-contain opacity-90"
+              loading="lazy"
+            />
           </div>
           <div className="flex items-start gap-2">
             <MapPin className="mt-1 h-5 w-5 text-accent shrink-0" />
