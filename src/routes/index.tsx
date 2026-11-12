@@ -267,9 +267,9 @@ function Index() {
             <MapPin className="mt-1 h-5 w-5 text-accent shrink-0" />
             <span>151 Forest St, Unit H<br />Montclair, NJ 07042</span>
           </div>
-          <a href="tel:2017085067" className="flex items-center gap-2 hover:text-white hover:underline transition-colors text-white">
+          <a href="tel:9738607595" className="flex items-center gap-2 hover:text-white hover:underline transition-colors text-white">
             <Phone className="h-5 w-5 text-accent shrink-0" />
-            201-708-5067
+            973-860-7595
           </a>
           <div className="flex gap-2 text-sm text-secondary">
             <a href="#" className="hover:text-white hover:underline transition-colors">Privacy Policy</a>
