@@ -13,6 +13,31 @@ export function LeadForm() {
       script.async = true;
       document.body.appendChild(script);
     }
+
+    // Listen for GoHighLevel form submission postMessages to fire Meta Pixel Lead event
+    const onMessage = (event: MessageEvent) => {
+      try {
+        const raw = event.data;
+        const isSubmitEvent =
+          (typeof raw === "string" && (raw.includes("form_submit") || raw.includes("form-submitted") || raw.includes("068Tat3aDkIti56tSHoO"))) ||
+          (raw && typeof raw === "object" && (raw.type === "form-submitted" || raw.action === "form_submit" || raw.event === "form_submit"));
+
+        if (isSubmitEvent && typeof window !== "undefined") {
+          const win = window as unknown as { fbq?: (...args: unknown[]) => void };
+          if (typeof win.fbq === "function") {
+            win.fbq("track", "Lead", {
+              content_name: "Joseph Aziz Free Home Evaluation",
+              content_category: "Real Estate Evaluation",
+            });
+          }
+        }
+      } catch {
+        // Ignore cross-origin message parse errors
+      }
+    };
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
   }, []);
 
   return (
@@ -132,6 +157,15 @@ export function CustomLeadForm() {
       }
 
       if (!sheetSaved) throw new Error("Google Sheet append was not confirmed");
+      if (typeof window !== "undefined") {
+        const win = window as unknown as { fbq?: (...args: unknown[]) => void };
+        if (typeof win.fbq === "function") {
+          win.fbq("track", "Lead", {
+            content_name: "Joseph Aziz Free Home Evaluation",
+            content_category: "Real Estate Evaluation",
+          });
+        }
+      }
       setDone(true);
     } catch (err: unknown) {
       console.error("[Lead Form Error]:", err);
