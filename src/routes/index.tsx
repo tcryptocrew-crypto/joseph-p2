@@ -99,11 +99,35 @@ function Eyebrow({ children }: { children: string }) {
 function Index() {
   return (
     <main className="relative overflow-x-hidden text-foreground">
+      {/* NAVBAR */}
+      <header className="sticky top-0 z-40 w-full border-b border-[#323644]/10 bg-[#FFFBF7]/85 backdrop-blur-md transition-all shadow-[0_1px_3px_0_rgba(0,0,0,0.03)]">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:py-3.5">
+          <a href="/" aria-label="Joseph Aziz Real Estate" className="flex items-center">
+            <span
+              role="img"
+              aria-label="Joseph Aziz Real Estate"
+              className="h-6 sm:h-7.5 brand-logo block bg-primary"
+              style={{ maskImage: `url(${logoDarkAsset})` }}
+            />
+          </a>
+
+          <div className="flex items-center">
+            <a
+              href="#evaluation"
+              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2 sm:px-5 sm:py-2 text-xs sm:text-sm font-semibold text-white shadow-xs hover:bg-primary/90 hover:shadow-md transition-all active:scale-[0.98]"
+            >
+              <span className="hidden sm:inline">Request Free Evaluation</span>
+              <span className="sm:hidden">Free Evaluation</span>
+              <ChevronRight className="size-3.5" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </header>
+
       {/* HERO */}
       <section className="relative">
         <div className="relative mx-auto max-w-5xl px-5 pb-10 pt-4 text-center fade-up sm:pb-12 sm:pt-6">
-          <Logo />
-          <div className="mt-3 inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:mt-4 sm:text-sm shadow-xs">
+          <div className="inline-block rounded-full border border-border bg-white/80 px-5 py-2 text-xs font-semibold uppercase tracking-wider backdrop-blur-sm sm:text-sm shadow-xs">
             <span className="text-primary font-bold">FOR BERGEN COUNTY HOMEOWNERS</span>
           </div>
           <h1 className="hero-title mx-auto mt-3 max-w-4xl text-foreground sm:mt-4">
