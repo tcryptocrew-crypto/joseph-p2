@@ -14,15 +14,35 @@ export function LeadForm() {
       document.body.appendChild(script);
     }
 
+    let tracked = false;
     // Listen for GoHighLevel form submission postMessages to fire Meta Pixel Lead event
     const onMessage = (event: MessageEvent) => {
       try {
-        const raw = event.data;
-        const isSubmitEvent =
-          (typeof raw === "string" && (raw.includes("form_submit") || raw.includes("form-submitted") || raw.includes("068Tat3aDkIti56tSHoO"))) ||
-          (raw && typeof raw === "object" && (raw.type === "form-submitted" || raw.action === "form_submit" || raw.event === "form_submit"));
+        let raw = event.data;
+        if (typeof raw === "string") {
+          try {
+            raw = JSON.parse(raw);
+          } catch {
+            // Not a JSON string
+          }
+        }
 
-        if (isSubmitEvent && typeof window !== "undefined") {
+        const isSubmitEvent =
+          (raw && typeof raw === "object" && (
+            raw.type === "form-submitted" ||
+            raw.action === "form_submit" ||
+            raw.action === "form-submitted" ||
+            raw.event === "form_submit" ||
+            raw.status === "form_submitted"
+          )) ||
+          (typeof raw === "string" && (
+            raw.includes('"action":"form_submit"') ||
+            raw.includes('"action":"form-submitted"') ||
+            raw.includes('"type":"form-submitted"')
+          ));
+
+        if (isSubmitEvent && !tracked && typeof window !== "undefined") {
+          tracked = true;
           const win = window as unknown as { fbq?: (...args: unknown[]) => void };
           if (typeof win.fbq === "function") {
             win.fbq("track", "Lead", {
