@@ -43,6 +43,12 @@ export function LeadForm() {
 
         if (isSubmitEvent && !tracked && typeof window !== "undefined") {
           tracked = true;
+          try {
+            sessionStorage.setItem("meta_lead_tracked", "true");
+          } catch {
+            // Ignore storage errors
+          }
+
           const win = window as unknown as { fbq?: (...args: unknown[]) => void };
           if (typeof win.fbq === "function") {
             win.fbq("track", "Lead", {
@@ -50,6 +56,11 @@ export function LeadForm() {
               content_category: "Real Estate Evaluation",
             });
           }
+
+          // Automatically redirect to /thank-you without needing any GHL configuration
+          setTimeout(() => {
+            window.location.href = "/thank-you";
+          }, 400);
         }
       } catch {
         // Ignore cross-origin message parse errors
@@ -178,6 +189,12 @@ export function CustomLeadForm() {
 
       if (!sheetSaved) throw new Error("Google Sheet append was not confirmed");
       if (typeof window !== "undefined") {
+        try {
+          sessionStorage.setItem("meta_lead_tracked", "true");
+        } catch {
+          // Ignore storage errors
+        }
+
         const win = window as unknown as { fbq?: (...args: unknown[]) => void };
         if (typeof win.fbq === "function") {
           win.fbq("track", "Lead", {
@@ -185,6 +202,10 @@ export function CustomLeadForm() {
             content_category: "Real Estate Evaluation",
           });
         }
+
+        setTimeout(() => {
+          window.location.href = "/thank-you";
+        }, 400);
       }
       setDone(true);
     } catch (err: unknown) {

@@ -16,14 +16,29 @@ export const Route = createFileRoute("/thank-you")({
 
 function ThankYouPage() {
   useEffect(() => {
-    // Fire Meta Pixel Lead event once on thank-you page load
+    // Fire Meta Pixel Lead event once on thank-you page load if not already tracked
     if (typeof window !== "undefined") {
-      const win = window as unknown as { fbq?: (...args: unknown[]) => void };
-      if (typeof win.fbq === "function") {
-        win.fbq("track", "Lead", {
-          content_name: "Joseph Aziz Free Home Evaluation",
-          content_category: "Real Estate Evaluation",
-        });
+      try {
+        const alreadyTracked = sessionStorage.getItem("meta_lead_tracked");
+        if (!alreadyTracked) {
+          sessionStorage.setItem("meta_lead_tracked", "true");
+          const win = window as unknown as { fbq?: (...args: unknown[]) => void };
+          if (typeof win.fbq === "function") {
+            win.fbq("track", "Lead", {
+              content_name: "Joseph Aziz Free Home Evaluation",
+              content_category: "Real Estate Evaluation",
+            });
+          }
+        }
+      } catch {
+        // Fallback if sessionStorage is disabled
+        const win = window as unknown as { fbq?: (...args: unknown[]) => void };
+        if (typeof win.fbq === "function") {
+          win.fbq("track", "Lead", {
+            content_name: "Joseph Aziz Free Home Evaluation",
+            content_category: "Real Estate Evaluation",
+          });
+        }
       }
     }
   }, []);
